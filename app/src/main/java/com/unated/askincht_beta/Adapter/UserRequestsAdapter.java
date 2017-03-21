@@ -112,12 +112,14 @@ public class UserRequestsAdapter extends RecyclerView.Adapter<UserRequestsAdapte
                 });*/
         holder.tvCity.setText(mRequests.get(position).getCity());
         holder.tvDist.setVisibility(View.GONE);
+        if(mRequests.get(position).getLastMsg() ==null)
+            holder.lastMsg.setText("Фотография");
+        else
         if (mRequests.get(position).getLastMsg().length() > 15)
             holder.lastMsg.setText(mRequests.get(position).getLastMsg().substring(0,15) + "...");
         else
             holder.lastMsg.setText(mRequests.get(position).getLastMsg());
-        if(mRequests.get(position).getLastMsg().length() ==0)
-            holder.lastMsg.setText("Фотография");
+
         holder.tvMsgText.setText(mRequests.get(position).getText());
         holder.more.setTag(SharedStore.getInstance().getMyShop().getId() + ";" +mRequests.get(position).getText()
                 +";"+mRequests.get(position).getId()/*mRequests.get(position).getShop_id()*/ );

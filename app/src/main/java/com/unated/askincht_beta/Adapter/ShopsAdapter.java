@@ -192,12 +192,14 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.BaseHolder> 
 
             holder.tvTime.setText(DateFormater.getFormatedDate(mShops.get(position).getLastRad()  * 1000, "dd")+" "+numToWord(DateFormater.getFormatedDate(mShops.get(position).getLastRad()  * 1000, "MM")));
         }        holder.dist.setText(String.format("%.1f", loc1.distanceTo(loc2) / 1000) + "км");
+        if(mShops.get(position).getMsg() ==null)
+            holder.lastMsg.setText("Фотография");
+        else
         if (mShops.get(position).getMsg().length() > 15)
             holder.lastMsg.setText(mShops.get(position).getMsg().substring(0,15) + "...");
         else
             holder.lastMsg.setText(mShops.get(position).getMsg());
-        if(mShops.get(position).getMsg().length() ==0)
-            holder.lastMsg.setText("Фотография");
+
 
 
         holder.tvMsgText.setText(mShops.get(position).getName());

@@ -176,7 +176,7 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
         mSupportMapFragment.getMapAsync(mOnMapReadyCallback);
         tvWalkTime3.setText(String.valueOf(10));
         final MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), R.raw.song);
-
+        mSeekBar.setMin(1);
         mSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {

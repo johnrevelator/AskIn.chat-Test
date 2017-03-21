@@ -242,14 +242,19 @@ public class WebDialogFragment extends SuperDialogFragment  {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 if (response.isSuccessful()&&response.body().getStatus()==0) {
-                    //pisos(It's for Russian developers)00))))
+                    //sosi_pisos(It's for Russian developers)00))))
 
                     Headers headers = response.headers();
+                    Log.i("MyLog",headers.size()+" headers");
 
-                    CookieManager.getInstance().setCookie(Constants.API.SIMPLE_URL+"my/edit/type", headers.value(7));
-                    CookieManager.getInstance().setCookie(Constants.API.SIMPLE_URL+"my/edit/type", headers.value(8));
-                    CookieManager.getInstance().setCookie(Constants.API.SIMPLE_URL+"my/edit/type", headers.value(9));
-                    CookieManager.getInstance().setCookie(Constants.API.SIMPLE_URL+"my/edit/type", headers.value(10));
+                    for(int i=0;i<headers.size();i++){
+                        Log.i("MyLog",headers.name(i)+" "+ i);
+                        if(headers.name(i).equals("Set-Cookie")){
+                            CookieManager.getInstance().setCookie(Constants.API.SIMPLE_URL+"my/edit/type", headers.value(i));
+
+                        }
+                    }
+
                     mWebView.getSettings().setJavaScriptEnabled(true);
                     mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
                     mWebView.getSettings().setBuiltInZoomControls(true);

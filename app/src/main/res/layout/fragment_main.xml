@@ -19,7 +19,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="109dp"
+        android:layout_marginBottom="124dp"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="8dp"
         android:layout_alignParentRight="true"
@@ -27,8 +27,8 @@
         >
 
         <at.markushi.ui.CircleButton
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
             app:cb_color="#fff"
             android:tint="@color/colorPrimaryDark"
             android:src="@drawable/plusw"
@@ -42,15 +42,15 @@
         android:layout_height="wrap_content"
 
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="74dp"
         android:layout_marginRight="8dp"
         android:layout_alignParentRight="true"
 
         >
 
         <at.markushi.ui.CircleButton
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
             app:cb_color="#fff"
             android:tint="@color/colorPrimaryDark"
 
@@ -72,7 +72,7 @@
 android:src="@drawable/ic_location_searching_black_24dp"
         app:borderWidth="0dp"
     app:elevation="6dp"
-    app:fabSize="mini"
+    app:fabSize="normal"
     app:pressedTranslationZ="12dp"
     app:rippleColor="@android:color/white"
         android:layout_alignParentBottom="true"
@@ -283,7 +283,7 @@ android:hint="Введите запрос…"
                             android:layout_height="match_parent"
                             android:layout_marginRight="6dp"
                                 android:layout_marginBottom="5dp"
-
+android:text="2:00"
                                 android:gravity="bottom"
                             android:textColor="#fff"
                             android:textSize="18sp"/>
@@ -331,6 +331,7 @@ android:hint="Введите запрос…"
                                         android:layout_marginBottom="5dp"
                                         android:layout_marginLeft="5dp"
                                             android:textColor="#fff"
+                                        android:text="15"
                                                   android:textSize="18sp"
                                             android:layout_toLeftOf="@+id/men"/>
 
