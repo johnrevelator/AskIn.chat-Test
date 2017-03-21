@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_log"
+    android:orientation="vertical">
+
+    <!-- <TextView android:id="@+id/tvForgot"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/transparent_selector"
+         android:padding="16dp"
+         android:textColor="#fff"
+         android:gravity="center_horizontal"
+         android:layout_alignParentBottom="true"
+         android:text="Нет аккаунта? Создайте"/>-->
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="33dp"
+        android:paddingRight="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+
+        <TextView
+            android:text="+7"
+            android:fontFamily="sans-serif-light"
+
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="170dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/textView5"
+            />
+        <EditText android:id="@+id/etPhone"
+            android:fontFamily="sans-serif-light"
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableRight="@drawable/tel"
+            android:background="@drawable/textbox"
+            android:hint="(___)___ __ __"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:textSize="14sp"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:text="Ведите номер телефона"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:paddingLeft="20dp"
+            android:fontFamily="sans-serif-light"
+
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/fogot_text"
+            android:layout_above="@+id/etPhone"
+            android:layout_alignParentStart="true" />
+        <Button android:id="@+id/btnFogot"
+            android:layout_width="150dp"
+            android:layout_marginLeft="24dp"
+            android:layout_below="@+id/etPhone"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+
+            android:layout_marginTop="40dp"
+            android:text="Восстановить пароль"
+            android:background="@drawable/round_corn_button"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="14sp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

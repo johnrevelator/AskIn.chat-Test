@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/menu_gradient"
+                android:orientation="vertical">
+
+    <RelativeLayout android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+        <ImageView android:id="@+id/ivAsk"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentTop="true"
+                   android:padding="10dp"
+                   android:src="@drawable/ic_search_menu"/>
+
+        <ImageView android:id="@+id/ivNotifications"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentTop="true"
+                   android:layout_centerInParent="true"
+                   android:padding="15dp"
+                   android:src="@drawable/ic_bell"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/no_image"/>
+
+        <TextView android:id="@+id/tvUserName"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentStart="true"
+                  android:layout_below="@+id/ivAvatar"
+                  android:layout_marginTop="16dp"
+                  android:gravity="center"
+                  android:text="Пожалуйста, авторизуйтесь" android:textColor="#fff"
+                  android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_below="@+id/relativeLayout">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+
+            <LinearLayout android:id="@+id/llSearch"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal"
+                              android:padding="16dp">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginRight="8dp"
+                               android:src="@drawable/ic_search"/>
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="10dp"
+                              android:text="Поиск"
+                              android:textColor="#fff"
+                              android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llMyRequests"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal">
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:gravity="center"
+                                  android:orientation="horizontal"
+                                  android:padding="16dp">
+
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginRight="8dp"
+                                   android:src="@drawable/ic_my_req"/>
+
+                        <TextView android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginLeft="15dp"
+                                  android:text="Мои запросы"
+                                  android:textColor="#fff"
+                                  android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/llMyRequestsConter"
+                                  android:layout_width="30dp"
+                                  android:layout_height="30dp"
+                                  android:layout_marginRight="10dp"
+                                  android:background="@drawable/bg_menu_counter_circle"
+                                  android:gravity="center"
+                                  android:visibility="gone">
+
+                        <TextView android:id="@+id/tvMyRequestsCounter"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:textColor="#fff"
+                                  android:textSize="14sp"
+                                  android:textStyle="bold"
+                                  tools:text="15"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llFav"
+                          android:visibility="gone"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal"
+                              android:padding="16dp">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginRight="8dp"
+                               android:src="@drawable/ic_fav"/>
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="10dp"
+                              android:text="Избранное"
+                              android:textColor="#fff"
+                              android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llUserReq"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical"
+                          android:visibility="gone">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal">
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:gravity="center"
+                                  android:orientation="horizontal"
+                                  android:padding="16dp">
+
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginRight="8dp"
+                                   android:src="@drawable/ic_user_req"/>
+
+                        <TextView android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:text="Запросы пользователей"
+                                  android:textColor="#fff"
+                                  android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/llUserReqCounter"
+                                  android:layout_width="30dp"
+                                  android:layout_height="30dp"
+                                  android:layout_marginRight="10dp"
+                                  android:background="@drawable/bg_menu_counter_circle"
+                                  android:gravity="center"
+                                  android:visibility="gone">
+
+                        <TextView android:id="@+id/tvUserReqCounter"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:textColor="#fff"
+                                  android:textSize="14sp"
+                                  android:textStyle="bold"
+                                  tools:text="15"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llAddCompany"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal"
+                              android:padding="16dp">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginRight="8dp"
+                               android:src="@drawable/ic_add_company"/>
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="15dp"
+                              android:text="Добавить компанию"
+                              android:textColor="#fff"
+                              android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llSettings"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal"
+                              android:padding="16dp">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginRight="8dp"
+                               android:src="@drawable/ic_settings"/>
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="10dp"
+                              android:text="Настройки"
+                              android:textColor="#fff"
+                              android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="1dp"
+                              android:background="#75aae1"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/llShare"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:visibility="gone"
+                          android:background="@drawable/transparent_selector_menu"
+                          android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:orientation="horizontal"
+                              android:padding="16dp">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginLeft="3dp"
+                               android:layout_marginRight="8dp"
+                               android:src="@drawable/ic_share"/>
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="17dp"
+                              android:text="Поделиться"
+                              android:textColor="#fff"
+                              android:textSize="16sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

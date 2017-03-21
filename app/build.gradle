@@ -1,0 +1,161 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/alexanderklimov/Downloads/key/store.jks')
+            storePassword '12345678'
+            keyAlias 'ask'
+            keyPassword '12345678'
+        }
+    }
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+
+        applicationId "com.unated.askincht_beta"
+        minSdkVersion 17
+        targetSdkVersion 24
+        versionCode 11
+        versionName "1.6"
+        signingConfig signingConfigs.release
+        multiDexEnabled true
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+allprojects {
+    repositories {
+        maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+        maven { url "https://jitpack.io" }    }
+}
+repositories{
+
+    maven {
+
+        url 'http://dl.bintray.com/amulyakhare/maven'
+
+    }
+}
+
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+
+    dependencies {
+        // These docs use an open ended version so that our plugin
+        // can be updated quickly in response to Android tooling updates
+
+        // We recommend changing it to the latest version from our changelog:
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'io.fabric'
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    compile 'com.github.chrisbanes:PhotoView:1.3.1'
+    compile 'com.github.ParkSangGwon:TedPicker:v1.0.10'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    compile 'com.github.mukeshsolanki:country-picker-android:1.1.7'
+
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.roughike:bottom-bar:2.0.2'
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.facebook.android:account-kit-sdk:4.+'
+    compile 'commons-io:commons-io:+'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
+    compile 'com.google.android.gms:play-services-maps:9.4.0'
+    compile 'com.google.android.gms:play-services-location:9.4.0'
+    compile 'org.adw.library:discrete-seekbar:1.0.1'
+    compile 'com.github.markushi:circlebutton:1.1'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile('io.socket:socket.io-client:0.7.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+        transitive = true;
+    }
+    compile 'us.belka:androidtoggleswitch:1.2.2'
+
+    compile 'com.akexorcist:googledirectionlibrary:1.0.4'
+    compile 'com.vk:androidsdk:+'
+    compile 'nl.qbusict:cupboard:2.1.4'
+    compile 'nl.littlerobots:cupboard-tools:0.2.0'
+    compile 'testfairy:testfairy-android-sdk:1.+@aar'
+    compile 'com.aurelhubert:ahbottomnavigation:2.0.3'
+    compile 'com.google.firebase:firebase-core:9.4.0'
+    // this line must be included to integrate with Firebase
+    compile 'com.google.firebase:firebase-messaging:9.4.0'
+    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://www.testfairy.com/maven' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.testfairy.plugins.gradle:testfairy:1.12'
+    }
+}
+apply plugin: 'testfairy'
+android {
+    testfairyConfig {
+        apiKey '58cf3592c89bdbf8fa1266af0500da802fb10f8d'
+        metrics "cpu,memory,network,logcat,gps"
+        video "wifi"
+        videoRate "0.5"
+        videoQuality "high"
+        recordOnBackground true
+        iconWatermark false
+        notify true
+        maxDuration "4h"
+        autoUpdate true
+        uploadProguardMapping true
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'

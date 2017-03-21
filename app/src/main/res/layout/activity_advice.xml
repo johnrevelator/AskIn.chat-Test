@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/splash"
+                android:orientation="vertical">
+
+
+    <!--<TextView
+        android:text="@string/advice"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:paddingLeft="36dp"
+        android:paddingRight="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:id="@+id/advice"
+        android:layout_above="@+id/imageView4"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:text="Что можно искать в Ask in Chat"
+            android:gravity="center"
+            android:fontFamily="sans-serif-light"
+
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:padding="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8" />
+
+        <TextSwitcher
+            android:padding="16dp"
+            android:fontFamily="sans-serif-light"
+
+            android:id="@+id/simpleTextSwitcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textView8"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/oi_vse"
+        android:onClick="ok"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/imageView4" />
+
+</RelativeLayout>

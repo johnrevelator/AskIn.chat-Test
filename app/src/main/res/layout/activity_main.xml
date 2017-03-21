@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draverLayout"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+
+            />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/bottomBar"
+            android:layout_alignParentStart="true" />
+
+
+
+       <!-- <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#5e8be2"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                <ImageView android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_centerInParent="true"
+                           android:layout_gravity="center"
+                           android:src="@drawable/logo"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout android:id="@+id/toolbar_counter"
+                      android:layout_width="10dp"
+                      android:layout_height="10dp"
+                      android:visibility="gone"
+                      android:layout_marginLeft="30dp"
+                      android:layout_marginTop="15dp"
+                      android:background="@drawable/bg_toolbar_counter"
+                      android:orientation="horizontal"/>-->
+        <LinearLayout android:id="@+id/toolbar_counter"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:visibility="gone"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_toolbar_counter"
+            android:orientation="horizontal"/>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

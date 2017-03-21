@@ -1,0 +1,22 @@
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_search"
+        title="Поиск" />
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/ic_person"
+        title="Мои запросы" />
+    <tab
+        id="@+id/tab_elect"
+        icon="@drawable/ic_heart"
+        title="Избраное" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_users_req"
+        title="Запросы клиентов" />
+    <tab
+        id="@+id/tab_more"
+        icon="@drawable/ic_more"
+        title="Еще" />
+</tabs>

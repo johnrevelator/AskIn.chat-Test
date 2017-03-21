@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:layout_margin="20dp"
+              android:background="@drawable/bg_dialog"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+    <TextView android:id="@+id/tvTitle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              tools:text="Имя запроса"/>
+
+    <Button android:id="@+id/btnDeleteRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_blue_button"
+            android:gravity="center"
+            android:text="Удалить запрос"
+            android:textAllCaps="false"
+            android:textColor="#fff"/>
+
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/transparent_selector"
+            android:gravity="center"
+            android:text="Закрыть запрос"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"/>
+
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/transparent_selector"
+            android:gravity="center"
+            android:text="Отключить уведомления"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"/>
+
+</LinearLayout>

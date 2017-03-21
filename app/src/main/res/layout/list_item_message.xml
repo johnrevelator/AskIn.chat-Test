@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:id="@+id/left"
+        android:orientation="horizontal">
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#ebeeef"
+
+        android:orientation="horizontal"
+        android:paddingRight="8dp"
+        android:paddingTop="6dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAvatar"
+            android:visibility="gone"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/no_image"/>
+
+
+        <ImageView android:id="@+id/ivReaded"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/readed"/>
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="36dp"
+                android:layout_height="wrap_content"
+
+                >
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_alignParentLeft="true"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/l_pl"
+                        android:src="@drawable/ph_left_placeholder"
+                        android:layout_width="215dp"
+                        android:layout_alignParentLeft="true"
+android:layout_gravity="center_vertical"
+                        android:layout_height="143dp"
+                        />
+                    <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                        app:siBorderColor="#000"
+                        app:siBorderWidth="4dp"
+                        android:id="@+id/msg_img1"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="215dp"
+                        android:layout_height="143dp"
+                        app:siShape="@drawable/ph_left"
+                       />
+
+
+
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="2dp"
+                    android:layout_alignBottom="@+id/msg"
+                    android:id="@+id/imageView7"
+                    />
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/msg"
+                    android:background="@drawable/left"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/imageView7">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content">
+
+
+                    </RelativeLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress"
+                        android:visibility="gone"
+
+                        android:layout_width="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_height="143dp"
+                        android:layout_marginLeft="105dp"
+                        android:background="@xml/progress"/>
+
+                    <TextView android:id="@+id/tvTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#707270"
+                        android:textSize="11sp"
+                        android:paddingBottom="4dp"
+                        android:layout_alignRight="@+id/tvMsgText"
+                        android:paddingRight="8dp"
+                        tools:text="12:34"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignBottom="@+id/tvMsgText" />
+
+                    <TextView android:id="@+id/tvMsgText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="6dp"
+                        android:autoLink="web"
+                        android:linksClickable="true"
+                        android:textColor="#000"
+                        android:textSize="18sp"
+                        android:paddingRight="50dp"
+                        android:paddingBottom="10dp"
+                        tools:text="test"
+                        android:textIsSelectable="true"
+                        android:textColorHighlight="@color/colorPrimaryDark"
+
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+     android:layout_weight="1"
+        android:id="@+id/right"
+     android:gravity="right"
+        android:background="#ebeeef"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">
+
+        <RelativeLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp">
+
+
+
+
+
+
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/ivAvatar1"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="4dp"
+
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/r_pl"
+                            android:layout_alignParentRight="true"
+android:layout_gravity="center_vertical"
+                            android:src="@drawable/ph_rignt_placeholder"
+                            android:layout_width="215dp"
+                            android:layout_height="143dp" />
+
+                        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                            app:siBorderWidth="4dp"
+                            app:siBorderColor="#000"
+
+                            android:layout_width="215dp"
+                            android:layout_height="143dp"
+                            app:siShape="@drawable/ph_right"
+                            android:id="@+id/msg_img"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center_vertical"
+
+                             />
+
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:paddingBottom="2dp"
+android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_alignBottom="@+id/msg1"
+                        android:id="@+id/imageView71"
+                        />
+
+                    <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="16dp"
+                        android:id="@+id/msg1"
+                        android:background="@drawable/baloon">
+
+                        <ProgressBar
+                            android:id="@+id/progress1"
+                            android:visibility="gone"
+                            android:layout_width="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_height="143dp"
+                            android:layout_marginRight="85dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@xml/progress"/>
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/tvMsgText1"                             android:layout_alignRight="@+id/tvMsgText1"
+                            android:paddingBottom="4dp"
+                            android:layout_marginRight="10dp">
+                        <TextView android:id="@+id/tvTime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="1dp"
+                            android:textColor="#707270"
+
+                            android:textSize="11sp"
+                            tools:text="12 at,"/>
+                        <ImageView android:id="@+id/ivReaded1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="8dp"
+                            android:layout_toRightOf="@+id/tvTime1"
+                            android:layout_alignBottom="@+id/tvTime1"
+                            android:src="@drawable/unread"/>
+                        </RelativeLayout>
+
+                        <TextView android:id="@+id/tvMsgText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="16dp"
+                            android:autoLink="web"
+                            android:linksClickable="true"
+                            android:paddingRight="70dp"
+                            android:textIsSelectable="true"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+android:paddingBottom="10dp"
+                            android:paddingTop="6dp"
+                            android:textSize="18sp"
+
+                            android:textColor="#000"
+                            tools:text="tnnk"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAvatar1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/no_image"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

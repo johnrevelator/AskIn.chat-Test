@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="2dp"
+    android:layout_marginBottom="4dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/parent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="#fff"
+                  android:orientation="horizontal"
+                  android:paddingBottom="16dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:paddingTop="16dp">
+
+
+        <RelativeLayout android:layout_width="50dp"
+                      android:layout_height="50dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginTop="3dp"
+                      android:id="@+id/mask"
+                      android:background="@drawable/mask"
+            android:orientation="horizontal" />
+
+
+            <TextView android:id="@+id/tvName"
+                android:layout_toRightOf="@+id/mask"
+                      android:layout_width="200dp"
+                      android:layout_height="wrap_content"
+                      android:textColor="#969494"
+                      android:textSize="16sp"
+                      tools:text="Name"
+                android:layout_alignTop="@+id/mask" />
+<!--
+            <TextView android:id="@+id/tvEmail"
+                      android:layout_width="match_parent"
+                    android:layout_below="@id/tvName"
+                    android:layout_height="wrap_content"
+                      android:layout_marginTop="6dp"
+                      android:textColor="#000000"
+                      android:textSize="14sp"
+                      tools:text="Name"
+                    android:layout_alignBottom="@+id/mask"
+                android:layout_toEndOf="@+id/mask"
+                android:layout_toStartOf="@+id/relativeLayout3" />-->
+
+          <!--  <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="10dp"
+                          android:gravity="center_vertical"
+                          android:orientation="horizontal"
+                          android:visibility="gone">
+
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:gravity="bottom"
+                              android:orientation="horizontal">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="@drawable/ic_man"/>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="5dp"
+                              android:text="15 мин"
+                              android:textColor="#fff"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="10dp"
+                              android:gravity="bottom"
+                              android:orientation="horizontal">
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="@drawable/ic_car"/>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="5dp"
+                              android:text="5 мин"
+                              android:textColor="#fff"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="110dp"
+                              android:layout_height="17dp"
+                              android:layout_marginLeft="16dp"
+                              android:background="@drawable/stars"/>
+
+            </LinearLayout>-->
+        <!--<RelativeLayout
+            android:layout_width="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="90dp"
+            android:id="@+id/relativeLayout3">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3 км"
+                android:gravity="right"
+                android:id="@+id/distance"/>
+        <ImageView
+            android:layout_width="5dp"
+            android:id="@+id/dots"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/distance"
+            android:src="@drawable/more"
+            android:layout_alignParentRight="true"
+            android:layout_height="20dp" />
+
+        <LinearLayout android:layout_width="30dp"
+                      android:layout_height="30dp"
+                      android:id="@+id/llCount"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/dots"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+                      android:background="@drawable/bg_count"
+                      android:gravity="center">
+
+            <TextView android:id="@+id/tvCount"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="#fff"
+                      tools:text="5"/>
+
+        </LinearLayout>
+            <TextView android:id="@+id/tvTm"
+                android:layout_below="@id/llCount"
+                android:layout_alignStart="@+id/llCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:text="12:34"
+
+               />
+        </RelativeLayout>-->
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

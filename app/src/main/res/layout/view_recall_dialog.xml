@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#a6000000"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:padding="40dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/redProf"
+            android:paddingTop="16dp"
+            android:background="@drawable/round_corn_white"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="40dp"
+                android:id="@+id/ratingBar"
+                android:numStars="5"
+                android:rating="5"
+                android:progressDrawable="@drawable/custom_ratingbar"
+                />
+
+            <EditText
+                android:fontFamily="sans-serif-light"
+                android:textCursorDrawable="@drawable/black_cursor"
+                android:inputType="textCapSentences|textMultiLine"
+                android:layout_width="match_parent"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:id="@+id/main_name"
+                android:hint="Введите текст"
+                android:background="@drawable/rounded_edittext"
+                android:layout_height="80dp"
+                android:gravity="top"
+                android:textSize="14sp"
+                />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="4dp"
+                android:id="@+id/main_send"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-light"
+
+                android:background="@drawable/sendb"
+                android:textSize="16sp"
+               />
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="8dp"
+                android:id="@+id/rv_recall"
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+        <!--  <LinearLayout
+              android:layout_width="match_parent"
+              android:id="@+id/share_variant"
+
+              android:background="@drawable/dialog_item"
+              android:layout_height="40dp">
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:text="Поделиться с друзьями"/>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:background="@drawable/dialog_item"
+              android:id="@+id/socialConnect"
+
+              android:layout_height="40dp">
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:text="Связать соцсети"/>
+          </LinearLayout>-->
+
+    </LinearLayout>
+
+
+</RelativeLayout>

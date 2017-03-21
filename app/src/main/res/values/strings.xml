@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Test.AskinChat</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+
+    <string name="title.search_hint" translatable="false">Пример: нужен фотограф на свадьбу</string>
+    <string name="title.search_radius" translatable="false">Укажите радиус поиска от Вас</string>
+    <string name="title.nav_drawer_open">Open</string>
+    <string name="title.nav_drawer_close">Close</string>
+    <string name="facebook_app_id">1783532565248993</string>
+    <string name="account_kit_client_token">6ea15fe83bd97023e6b343de870fbeb6</string>
+    <string name="ak_login_protocol_scheme">ak362486697472097</string>
+    <string name="token">dd13ae79522b96f9ac8db9ca3e1c5fde</string>
+    <integer name="com_vk_sdk_AppId">5857707</integer>
+
+    <string name="title.login" translatable="false">Вход</string>
+    <string name="photo" translatable="false">Выберите фото</string>
+    <string name="title.registration" translatable="false">Регистрация</string>
+    <string name="title.forgot_pwd" translatable="false">Забыли пароль?</string>
+    <string name="title.email_reg" translatable="false">Регистрация через почту</string>
+    <string name="title.email" translatable="false">Ваш адрес электронной почты</string>
+    <string name="title.create_password" translatable="false">Создать пароль</string>
+    <string name="title.repeat_password" translatable="false">Повторить пароль</string>
+    <string name="title.create_account" translatable="false">Создать аккаунт</string>
+    <string name="title.oferta" translatable="false">Нажимая кнопку Создать аккаунт,\nя принимаю Условия Оферты</string>
+    <string name="title.already_have" translatable="false">Уже есть аккаунт?</string>
+    <string name="error.empty" translatable="false">Поле не может быть пустым</string>
+    <string name="title.searching" translatable="false">Ищу необходимые компании в заданном радиусе.</string>
+    <string name="title.search_result" formatted="false" translatable="false">
+        <![CDATA[<b>%s %d</b> %s рядом с Вами]]></string>
+
+    <plurals name="shops">
+        <item quantity="few" translatable="false">точки</item>
+        <item quantity="one" translatable="false">точка</item>
+        <item quantity="other" translatable="false">точек</item>
+    </plurals>
+
+    <plurals name="find">
+        <item quantity="few" translatable="false">Найдено</item>
+        <item quantity="one" translatable="false">Найдена</item>
+        <item quantity="other" translatable="false">Найдено</item>
+    </plurals>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "952649839747",
+    "firebase_url": "https://askinchatbeta.firebaseio.com",
+    "project_id": "askinchatbeta",
+    "storage_bucket": "askinchatbeta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952649839747:android:f3fb247f05dc5310",
+        "android_client_info": {
+          "package_name": "com.unated.askincht_beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952649839747-nqlfr5j8jltakanlvlc0omc666utvd13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMaI0n8tiS1kkwtNDzOO8Gt9Jz8Z-4Kws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

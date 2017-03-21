@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+android:padding="5dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/mask"
+            android:id="@+id/avatar"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:textSize="9sp"
+            android:fontFamily="sans-serif-light"
+            android:paddingTop="4dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simple Text"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:id="@+id/rating"
+            android:layout_height="wrap_content"
+            android:numStars="4"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+android:layout_gravity="center_horizontal"
+            android:progress="5"
+            style="?android:attr/ratingBarStyleSmall"
+
+            android:progressDrawable="@drawable/small_custom_ratingbar"
+
+
+            />
+      </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+        android:fontFamily="sans-serif-light"
+
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/recall_text"
+android:gravity="top"
+                android:text="fdsgsdbsabfdberereeb"
+                android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

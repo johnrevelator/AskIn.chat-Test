@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#a6000000"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:padding="40dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/round_corn_white"
+        android:id="@+id/cryr"
+        android:layout_marginTop="4dp"
+        android:layout_height="35dp">
+        <TextView
+            android:fontFamily="sans-serif-light"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Пожаловаться"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/round_corn_white"
+            android:id="@+id/delete"
+            android:layout_marginTop="4dp"
+            android:layout_height="35dp">
+            <TextView
+                android:fontFamily="sans-serif-light"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Удалить"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/dialog_item"
+            android:id="@+id/cancel"
+            android:layout_marginTop="32dp"
+            android:layout_height="40dp">
+            <TextView
+                android:fontFamily="sans-serif-light"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Отмена"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

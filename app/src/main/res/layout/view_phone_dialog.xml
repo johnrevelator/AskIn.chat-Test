@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#a6000000"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:padding="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/cancelD"
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/redProfP"
+        android:background="@drawable/round_corn_white"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:fontFamily="sans-serif-light"
+
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:text="Позвонить"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textColor="#15b1c5"
+            android:fontFamily="sans-serif-light"
+
+            android:id="@+id/phone"
+            android:textSize="28sp"
+            android:text="+78005553535"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:textColor="#000"
+            android:fontFamily="sans-serif-light"
+
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:text="*За использование сотовой связи, оператором может взиматься доп. плата"/>
+    </LinearLayout>
+</RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

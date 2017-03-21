@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <LinearLayout android:id="@+id/linearLayout2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="#83d3e2"
+                  android:orientation="horizontal"
+                  android:padding="10dp">
+
+        <TextView android:id="@+id/tvSearchResult"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:textColor="#fff"
+            android:fontFamily="sans-serif-light"
+
+            tools:text="Результаты поиска"/>
+
+    </LinearLayout>
+
+
+  <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvShops"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:id="@+id/moreB"
+android:visibility="gone"
+        android:background="@drawable/round_corn"
+        android:textColor="#fff"
+        android:layout_marginBottom="28dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingRight="12dp"
+        android:text="Расшрить поиск до 30км"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:minHeight="1000dp"
+              android:minWidth="1000dp"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:visibility="visible"
+
+        android:background="@drawable/search_back">
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="62dp"
+            android:gravity="center"
+            android:lines="3"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/title.searching"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+             />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:layout_below="@id/search_container"
+
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/radar_view"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+
+            android:layout_centerInParent="true"
+            android:src="@drawable/radar"/>
+    </RelativeLayout>
+
+</RelativeLayout>
