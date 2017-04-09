@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="#a6000000"
+    android:orientation="vertical"
+    style="@style/ChatStyle">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:paddingLeft="40dp"
+        android:paddingRight= "40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <!--  <LinearLayout
+              android:layout_width="match_parent"
+              android:id="@+id/share_variant"
+
+              android:background="@drawable/dialog_item"
+              android:layout_height="40dp">
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:text="Поделиться с друзьями"/>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:background="@drawable/dialog_item"
+              android:id="@+id/socialConnect"
+
+              android:layout_height="40dp">
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:text="Связать соцсети"/>
+          </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/round_corn_white"
+            android:id="@+id/change_ph"
+            android:layout_marginTop="4dp"
+            android:layout_height="35dp">
+            <TextView
+                android:fontFamily="sans-serif-light"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Изменить фотографию"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/round_corn_white"
+            android:id="@+id/editing"
+            android:layout_marginTop="4dp"
+            android:layout_height="110dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/redPr"
+                android:minHeight="110dp"
+                android:background="@drawable/round_corn_white"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_rel"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:paddingTop="8dp"
+                        android:id="@+id/main_img2"
+                        android:src="@drawable/mask"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal" />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:paddingTop="4dp"
+                    android:paddingLeft="16dp"
+                    android:fontFamily="sans-serif-medium"
+
+                    android:visibility="gone"
+                    android:paddingRight="16dp"
+                    android:id="@+id/main_name"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:text=""/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:paddingTop="4dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textCursorDrawable="@drawable/color_cursor"
+
+                    android:id="@+id/main_ph"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:text=""
+                    android:hint="Имя"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:fontFamily="sans-serif-light"
+
+                    android:id="@+id/main_desc"
+                    android:layout_height="10dp"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/round_corn_white"
+            android:id="@+id/save"
+            android:layout_marginTop="4dp"
+            android:layout_height="35dp">
+            <TextView
+                android:fontFamily="sans-serif-light"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Сохранить"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/dialog_item"
+            android:id="@+id/cancel"
+            android:layout_marginTop="32dp"
+            android:layout_height="40dp">
+            <TextView
+                android:fontFamily="sans-serif-light"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Отмена"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

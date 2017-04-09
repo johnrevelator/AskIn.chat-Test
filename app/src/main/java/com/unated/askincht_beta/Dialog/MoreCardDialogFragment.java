@@ -305,6 +305,7 @@ getMyShop();
             case R.id.recall:
                RecallDialogFragment searchProcessDialogFragment = new  RecallDialogFragment();
                 Bundle bundle = new Bundle();
+                bundle.putInt("type",0);
                 bundle.putInt("id",myInt);
                 bundle.putInt("rId",rId);
                 searchProcessDialogFragment.setArguments(bundle);

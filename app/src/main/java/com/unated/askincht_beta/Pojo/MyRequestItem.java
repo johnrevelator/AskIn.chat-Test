@@ -17,7 +17,8 @@ public class MyRequestItem implements Serializable{
     private String message;
     private List<Shop> shops;
     private List<String> users;
-
+    private boolean closed;
+    private int closed_shop_id;
     public int getId() {
         return id;
     }
@@ -71,6 +72,13 @@ public class MyRequestItem implements Serializable{
 
     public List<String> getUsers() {
         return users;
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+    public int getClosedShopId(){
+        return closed_shop_id;
     }
 
     public String getMessage() {

@@ -134,6 +134,7 @@ android:src="@drawable/ic_location_searching_black_24dp"
                 android:layout_alignStart="@+id/etSearch"
                 android:layout_alignEnd="@+id/etSearch" />
 
+
             <AutoCompleteTextView android:id="@+id/etSearch"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -143,7 +144,6 @@ android:hint="Введите запрос…"
                 android:layout_marginLeft="36dp"
                       android:layout_marginRight="36dp"
                       android:drawablePadding="12dp"
-                      android:drawableRight="@drawable/searchh"
                       android:imeOptions="actionSearch"
                       android:maxLines="1"
                 android:theme="@style/Autocomplete"
@@ -156,6 +156,14 @@ android:hint="Введите запрос…"
                       android:textColorHint="#fff"
                       android:textSize="14sp"
                 android:layout_alignParentTop="true" />
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignTop="@+id/etSearch"
+                android:paddingTop="8dp"
+                android:id="@+id/search"
+                android:src="@drawable/searchh"
+                android:layout_alignRight="@+id/etSearch"/>
 
             <RelativeLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"

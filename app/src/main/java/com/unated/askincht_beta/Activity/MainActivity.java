@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -59,6 +60,7 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
     int entered=0;
     @Bind(R.id.toolbar_counter)
     LinearLayout llToolbarCounter;
+
     AHBottomNavigation bottomNavigation;
     private Fragment mFragment;
 
@@ -76,28 +78,16 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
         setSupportActionBar(mToolbar);
 
 
-/*
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-*/
-      /*  mFragment = new MainFragment();
-        setFragment(R.id.container, mFragment);*/
-/*
-        setupDrawer();
-*/
+
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomBar);
 
-            bottomNavigation.setAccentColor(Color.parseColor("#5e8be2"));
+        bottomNavigation.setAccentColor(Color.parseColor("#5e8be2"));
         bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
 
-        if (!TextUtils.isEmpty(SharedStore.getInstance().getSID())) {
-            EventBus.getDefault().post(new ConnectMessage());
-            sendToken();
-        } else {
-            getDeviceRegistration();
-        }
+
     }
 
 
@@ -116,9 +106,8 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
                     SharedStore.getInstance().setUserId(String.valueOf(response.body().getData().getUser_id()));
                     SharedStore.getInstance().setDeviceAuth(true);
                     EventBus.getDefault().post(new ConnectMessage());
-                    sendToken();
-                } else  if(response.body().getStatus() == 1026&&! AppMain.isRefresh) {
-                    AppMain.setIsRefresh(true);
+                    getMyShop();                } else  if(response.body().getStatus() == 1026&&! AppMain.isRefresh) {
+                    AppMain.isRefresh=true;
                     Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
                     callr.enqueue(new Callback<RefreshResponse>() {
                         @Override
@@ -127,12 +116,24 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
                             if (response.isSuccessful() && response.body().getStatus() == 0) {
                                 SharedStore.getInstance().setToken(response.body().getData().getToken());
                                 getDeviceRegistration();
-                                AppMain.setIsRefresh(false);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
 
-                            }else if(response.body().getStatus() == 1029){
-                                AppMain.setIsRefresh(false);
+                            }else if(response.body().getStatus() == 1029||response.body().getStatus() == 1028){
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
                                 logout();
                             }
                         }
@@ -166,7 +167,7 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
 
 
                 } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
-                    AppMain.setIsRefresh(true);
+                    AppMain.isRefresh=true;
                     Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
                     callr.enqueue(new Callback<RefreshResponse>() {
                         @Override
@@ -174,13 +175,25 @@ public class MainActivity extends SuperActivity implements NavigationDrawer.Navi
                             closeProgressDialog();
                             if (response.isSuccessful() && response.body().getStatus() == 0) {
                                 SharedStore.getInstance().setToken(response.body().getData().getToken());
-sendToken();
-                                AppMain.setIsRefresh(false);
+                                sendToken();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
 
-                            }else if(response.body().getStatus() == 1029){
-                                AppMain.setIsRefresh(false);
+                            }else if(response.body().getStatus() == 1029||response.body().getStatus() == 1028){
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
                                 logout();
                             }
                         }
@@ -198,7 +211,7 @@ sendToken();
 
 
 
-                }
+            }
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
@@ -231,15 +244,17 @@ sendToken();
 
 
                         }
+                        sendToken();
                         setUpItems();
                         notif();
+
                     }
 
 
 
 
                 } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
-                    AppMain.setIsRefresh(true);
+                    AppMain.isRefresh=true;
                     Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
                     callr.enqueue(new Callback<RefreshResponse>() {
                         @Override
@@ -248,12 +263,24 @@ sendToken();
                             if (response.isSuccessful() && response.body().getStatus() == 0) {
                                 SharedStore.getInstance().setToken(response.body().getData().getToken());
                                 getMyShop();
-                                AppMain.setIsRefresh(false);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
 
-                            }else if(response.body().getStatus() == 1029){
-                                AppMain.setIsRefresh(false);
+                            }else if(response.body().getStatus() == 1029||response.body().getStatus() == 1028){
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
                                 logout();
                             }
                         }
@@ -288,7 +315,7 @@ sendToken();
 
     public void setUpItems(){
         bottomNavigation.removeAllItems();
-        bottomNavigation.addItem(new AHBottomNavigationItem("Поиск",(R.drawable.ic_search)));
+        bottomNavigation.addItem(new AHBottomNavigationItem("Поиск",(R.drawable.ic_searching)));
         bottomNavigation.addItem(new AHBottomNavigationItem("Мои запросы",R.drawable.ic_person));
 /*
         bottomNavigation.addItem(new AHBottomNavigationItem("Избранное",R.drawable.ic_heart));
@@ -299,12 +326,12 @@ sendToken();
 
         }
         else{
-                bottomNavigation.addItem(new AHBottomNavigationItem("Клиенты",R.drawable.ic_users_req));
-                bottomNavigation.addItem(new AHBottomNavigationItem("Настройки",R.drawable.ic_more ));
-                entered++;
-                Log.i(TAG, String.valueOf(entered));
+            bottomNavigation.addItem(new AHBottomNavigationItem("Клиенты",R.drawable.ic_users_req));
+            bottomNavigation.addItem(new AHBottomNavigationItem("Настройки",R.drawable.ic_more ));
+            entered++;
+            Log.i(TAG, String.valueOf(entered));
 
-            }
+        }
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
@@ -345,39 +372,39 @@ sendToken();
         if(getIntent().hasExtra("type")) {
             Log.i("type_intent","is");
             Bundle bd = getIntent().getExtras();
-                Log.i("type_intent",getIntent().getIntExtra("type",0)+" type");
+            Log.i("type_intent",getIntent().getIntExtra("type",0)+" type");
 
-                if(getIntent().getIntExtra("type",0)==1) {
-                    Log.i("type_intent","done 1");
+            if(getIntent().getIntExtra("type",0)==1) {
+                Log.i("type_intent","done 1");
 
-                    getIntent().removeExtra("type");
+                getIntent().removeExtra("type");
 
-                    bottomNavigation.setCurrentItem(1);
-                } else if(getIntent().getIntExtra("type",0)==2) {
-                    Log.i("type_intent","done 2");
-                    getIntent().removeExtra("type");
+                bottomNavigation.setCurrentItem(1);
+            } else if(getIntent().getIntExtra("type",0)==2) {
+                Log.i("type_intent","done 2");
+                getIntent().removeExtra("type");
 
-                    bottomNavigation.setCurrentItem(2);
-                } else if(getIntent().getIntExtra("type",0)==0) {
-                    Log.i("type_intent","done 0");
-                    getIntent().removeExtra("type");
+                bottomNavigation.setCurrentItem(2);
+            } else if(getIntent().getIntExtra("type",0)==0) {
+                Log.i("type_intent","done 0");
+                getIntent().removeExtra("type");
 
-                    bottomNavigation.setCurrentItem(0);
-                }
-                else if(getIntent().getIntExtra("type",0)==3) {
-                    Log.i("type_intent","done 3");
-                    getIntent().removeExtra("type");
-                    onSearchClicked();
-                    bottomNavigation.setCurrentItem(3);
+                bottomNavigation.setCurrentItem(0);
+            }
+            else if(getIntent().getIntExtra("type",0)==3) {
+                Log.i("type_intent","done 3");
+                getIntent().removeExtra("type");
+                onSearchClicked();
+                bottomNavigation.setCurrentItem(3);
 
-                }
-                else if(getIntent().getIntExtra("type",0)==4) {
-                    Log.i("type_intent","done 4");
-                    getIntent().removeExtra("type");
-                    setFragment(R.id.container, ShopListFragment.newInstance(getIntent().getIntExtra("extra_item",0)));
+            }
+            else if(getIntent().getIntExtra("type",0)==4) {
+                Log.i("type_intent","done 4");
+                getIntent().removeExtra("type");
+                setFragment(R.id.container, ShopListFragment.newInstance(getIntent().getIntExtra("extra_item",0)));
 
 
-                }
+            }
 
 
 
@@ -417,8 +444,8 @@ sendToken();
 /*
         if (!TextUtils.isEmpty(SharedStore.getInstance().getSID())) {
 */
-            mFragment = new MyRequestsFragment();
-            setFragment(R.id.container, mFragment);
+        mFragment = new MyRequestsFragment();
+        setFragment(R.id.container, mFragment);
        /* } else {
             startActivity(new Intent(this, LoginActivity.class));
         }*/
@@ -441,7 +468,24 @@ sendToken();
     protected void onResume() {
         super.onResume();
         Log.i("msgT","Resumed");
-        getMyShop();
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!TextUtils.isEmpty(SharedStore.getInstance().getSID())) {
+                    EventBus.getDefault().post(new ConnectMessage());
+                    android.app.Fragment prev = getFragmentManager().findFragmentByTag("MoreDialog");
+                    if(prev == null){
+                        Log.i("MyLog","Getting shop");
+
+                        getMyShop();}
+                } else {
+                    getDeviceRegistration();
+                }
+
+            }
+        }, 1000);
 
 
     }
@@ -556,10 +600,11 @@ sendToken();
                 if (response.isSuccessful()&& response.body().getStatus() == 0 ) {
                     int myReq = 0;
                     int usReq=0;
+                    int supReq=0;
                     Log.i("msgT",String.valueOf(myReq));
                     Log.i("msgT",String.valueOf(usReq));
 
-                    myReq=response.body().getData().getMessageShops();
+                    myReq=response.body().getData().getMessageShops()-response.body().getData().getMessageSupport();
                     if(myReq>0) {
                         AHNotification notification = new AHNotification.Builder()
                                 .setText(String.valueOf(myReq))
@@ -571,6 +616,29 @@ sendToken();
                     else{
 
                         bottomNavigation.setNotification("", 1);
+
+                    }
+                    supReq=response.body().getData().getMessageSupport();
+
+                    if(supReq>0) {
+                        AHNotification notification = new AHNotification.Builder()
+                                .setText(String.valueOf(supReq))
+                                .setBackgroundColor(Color.parseColor("#e7567c"))
+                                .setTextColor(Color.parseColor("#ffffff"))
+                                .build();
+                        if( !shopIs)
+                        bottomNavigation.setNotification(notification, 2);
+                        else
+                            bottomNavigation.setNotification(notification, 3);
+
+                    }
+
+
+                        else{
+                        if( !shopIs)
+                            bottomNavigation.setNotification("", 2);
+                        else
+                            bottomNavigation.setNotification("", 3);
 
                     }
 
@@ -591,36 +659,48 @@ sendToken();
 
                     }
 
-            } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
-                AppMain.setIsRefresh(true);
-                Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
-                callr.enqueue(new Callback<RefreshResponse>() {
-                    @Override
-                    public void onResponse(Call<RefreshResponse> callr, Response<RefreshResponse> response) {
-                        closeProgressDialog();
-                        if (response.isSuccessful() && response.body().getStatus() == 0) {
-                            SharedStore.getInstance().setToken(response.body().getData().getToken());
-                            notif();
-                            AppMain.setIsRefresh(false);
+                } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
+                    AppMain.isRefresh=true;
+                    Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
+                    callr.enqueue(new Callback<RefreshResponse>() {
+                        @Override
+                        public void onResponse(Call<RefreshResponse> callr, Response<RefreshResponse> response) {
+                            closeProgressDialog();
+                            if (response.isSuccessful() && response.body().getStatus() == 0) {
+                                SharedStore.getInstance().setToken(response.body().getData().getToken());
+                                notif();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
+                                    }
+                                }, 30000);
 
-                        }else if(response.body().getStatus() == 1029){
-                            AppMain.setIsRefresh(false);
+                            }else if(response.body().getStatus() == 1029||response.body().getStatus() == 1028){
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppMain.isRefresh=false;
+                                        Log.i("MyLog"," isRefresh=false;");
 
-                            logout();
+                                    }
+                                }, 30000);
+                                logout();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<RefreshResponse> callr, Throwable t) {
-                        closeProgressDialog();
-                    }
-                });
-            }else  if(response.body().getStatus() == 1027||response.body().getStatus() == 1028||response.body().getStatus() == 1029) {
+                        @Override
+                        public void onFailure(Call<RefreshResponse> callr, Throwable t) {
+                            closeProgressDialog();
+                        }
+                    });
+                }else  if(response.body().getStatus() == 1027||response.body().getStatus() == 1028||response.body().getStatus() == 1029) {
 
 
-                logout();
-            }
+                    logout();
+                }
 
             }
 
@@ -648,6 +728,8 @@ sendToken();
     public void push(NotificationMessage message) {
     }
 
-    }
+}
+
+
 
 

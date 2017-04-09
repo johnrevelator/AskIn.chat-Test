@@ -97,6 +97,10 @@ Log.i("MyLog", String.valueOf(mRequests.get(position).getTime()));
                 holder.mTextField.setText("Нет ответа");
             }
         }.start();*/
+        if(mRequests.get(position).isClosed()){
+            holder.done.setVisibility(View.VISIBLE);
+
+        }
 
         holder.tvMsgText.setText(mRequests.get(position).getText());
         Log.i("MyLog", String.valueOf(allCount));
@@ -122,7 +126,9 @@ Log.i("MyLog",daysBetween+" days");
             holder.tvTime.setText(DateFormater.getFormatedDate(mRequests.get(position).getTime() * 1000, "dd")+" "+numToWord(DateFormater.getFormatedDate(mRequests.get(position).getTime() * 1000, "MM")));
         }
         holder.llParent.setTag(mRequests.get(position).getId() + ";" + mRequests.get(position).getText());
+        holder.more.setTag(mRequests.get(position).getId() + ";" + mRequests.get(position).getText());
         holder.llParent.setOnClickListener(getOnClickListener());
+        holder.more.setOnClickListener(getOnClickListener());
         holder.llParent.setOnLongClickListener(getOnLongClickListener());
     }
 
@@ -210,13 +216,17 @@ Log.i("MyLog",daysBetween+" days");
         private TextView tvMsgCount;
         private ImageView clock;
         private TextView tvAnsCount;
+        private TextView done;
         private TextView tvMsgText;
         private TextView tvTime;
         private TextView mTextField;
         private LinearLayout llParent;
+        private ImageView more;
 
         public BaseHolder(View itemView) {
             super(itemView);
+            more = ButterKnife.findById(itemView, R.id.moree);
+            done = ButterKnife.findById(itemView, R.id.is_done);
 
             clock = ButterKnife.findById(itemView, R.id.imageView3);
             llMsgStatus = ButterKnife.findById(itemView, R.id.llMsgStatus);

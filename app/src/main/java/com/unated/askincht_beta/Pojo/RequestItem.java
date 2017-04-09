@@ -9,7 +9,8 @@ public class RequestItem {
     private String last_message;
     private String message;
     private String city;
-
+    private boolean closed;
+    private int closed_shop_id;
     private double lat;
     private double lon;
     private long last_message_time;
@@ -59,7 +60,12 @@ public class RequestItem {
     public boolean getReaded() {
         return readed;
     }
-
+    public boolean isClosed() {
+        return closed;
+    }
+    public int getClosedShopId(){
+        return closed_shop_id;
+    }
     public int getCnt_messages() {
         return cnt_messages;
     }

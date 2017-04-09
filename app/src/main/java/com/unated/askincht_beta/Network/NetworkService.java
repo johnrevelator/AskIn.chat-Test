@@ -4,10 +4,12 @@ import com.unated.askincht_beta.Pojo.AuthRegister;
 import com.unated.askincht_beta.Pojo.AuthResponse;
 import com.unated.askincht_beta.Pojo.BalanceResponse;
 import com.unated.askincht_beta.Pojo.BusMessages.LogoutResponse;
+import com.unated.askincht_beta.Pojo.CloseResponse;
 import com.unated.askincht_beta.Pojo.ElectResponse;
 import com.unated.askincht_beta.Pojo.IsSocialResponse;
 import com.unated.askincht_beta.Pojo.RecallsResponse;
 import com.unated.askincht_beta.Pojo.RefreshResponse;
+import com.unated.askincht_beta.Pojo.RequestSupResponse;
 import com.unated.askincht_beta.Pojo.ShopResponse;
 import com.unated.askincht_beta.Pojo.MessagesResponse;
 import com.unated.askincht_beta.Pojo.MyRequestResponse;
@@ -67,6 +69,9 @@ public interface NetworkService {
     @POST(Constants.API.GET_MY_SHOP)
     @FormUrlEncoded
     Call<MyShopResponse> getMyShop(@Field("sid") String sid, @Field("token") String token);
+    @POST(Constants.API.GET_REQUEST_SUPPORT)
+    @FormUrlEncoded
+    Call<RequestSupResponse> getRequestSupport(@Field("token") String token);
 
     @POST(Constants.API.SET_READ)
     @FormUrlEncoded
@@ -74,7 +79,7 @@ public interface NetworkService {
 
     @POST(Constants.API.GET_PROFILE)
     @FormUrlEncoded
-    Call<ProfileResponse> getProfile(@Field("sid") String sid, @Field("token") String token);
+    Call<ProfileResponse> getProfile(@Field("token") String token);
 
     @POST(Constants.API.GET_REQUEST_SHOPS)
     @FormUrlEncoded
@@ -92,6 +97,14 @@ public interface NetworkService {
     @POST(Constants.API.DELETE_REQUEST)
     @FormUrlEncoded
     Call<SimpleResponse> deleteRequest(@Field("sid") String sid, @Field("request_id") String request_id, @Field("token") String token);
+
+    @POST(Constants.API.EDIT_PROFILE)
+    @FormUrlEncoded
+    Call<SimpleResponse> editName(@Field("token") String token,@Field("name") String request_id);
+
+    @Multipart
+    @POST(Constants.API.EDIT_PROFILE)
+    Call<ResponseBody> editAvatar( @Part MultipartBody.Part request_id, @Part("token") String token);
 
     @POST(Constants.API.DELETE_MY_REQUEST)
     @FormUrlEncoded
@@ -138,6 +151,9 @@ public interface NetworkService {
     @POST(Constants.API.RESTORE)
     @FormUrlEncoded
     Call<SimpleResponse> setNewPass(@Field("pw") String pwd,@Field("code") String code, @Field("token") String token);
+    @POST(Constants.API.CLOSE)
+    @FormUrlEncoded
+    Call<CloseResponse> closeRequest(@Field("token") String token, @Field("shop_id") int shop_id, @Field("request_id") int request_id, @Field("text") String text, @Field("rating") float rating);
 
     @Multipart
     @POST(Constants.API.UPLOAD)

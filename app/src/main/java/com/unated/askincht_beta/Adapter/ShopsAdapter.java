@@ -2,6 +2,7 @@ package com.unated.askincht_beta.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -192,21 +193,25 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.BaseHolder> 
 
             holder.tvTime.setText(DateFormater.getFormatedDate(mShops.get(position).getLastRad()  * 1000, "dd")+" "+numToWord(DateFormater.getFormatedDate(mShops.get(position).getLastRad()  * 1000, "MM")));
         }        holder.dist.setText(String.format("%.1f", loc1.distanceTo(loc2) / 1000) + "км");
-        if(mShops.get(position).getMsg() ==null)
-            holder.lastMsg.setText("Фотография");
-        else
-        if (mShops.get(position).getMsg().length() > 15)
-            holder.lastMsg.setText(mShops.get(position).getMsg().substring(0,15) + "...");
-        else
-            holder.lastMsg.setText(mShops.get(position).getMsg());
+        if(mShops.get(position).isClosed()){
+            holder.lastMsg.setText("Сделка завершена");
+            holder.lastMsg.setTextColor(Color.parseColor("#00CC00"));
+        }
+        else {
+            if (mShops.get(position).getMsg() == null)
+                holder.lastMsg.setText("Фотография");
+            else if (mShops.get(position).getMsg().length() > 15)
+                holder.lastMsg.setText(mShops.get(position).getMsg().substring(0, 15) + "...");
+            else
+                holder.lastMsg.setText(mShops.get(position).getMsg());
 
-
+        }
 
         holder.tvMsgText.setText(mShops.get(position).getName());
         holder.more.setTag(mShops.get(position).getId() + ";" + mShops.get(position).getName()
                 + ";" + String.format("%.2f", loc1.distanceTo(loc2) / 1000) + ";" + mShops.get(position).getLat() + ";" + mShops.get(position).getLon() + ";" + mShops.get(position).getPhone());
         holder.llParent.setTag(mShops.get(position).getId() + ";" + mShops.get(position).getName()
-                + ";" + String.format("%.2f", loc1.distanceTo(loc2) / 1000) + ";" + mShops.get(position).getLat() + ";" + mShops.get(position).getLon() + ";" + mShops.get(position).getPhone());
+                + ";" + String.format("%.2f", loc1.distanceTo(loc2) / 1000) + ";" + mShops.get(position).getLat() + ";" + mShops.get(position).getLon() + ";" + mShops.get(position).getPhone()+ ";" + mShops.get(position).isClosed());
         holder.llParent.setOnClickListener(getOnClickListener());
         holder.aElect.setOnClickListener(new View.OnClickListener() {
             @Override

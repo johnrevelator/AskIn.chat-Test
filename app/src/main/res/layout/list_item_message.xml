@@ -8,164 +8,178 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
 
         android:id="@+id/left"
         android:orientation="horizontal">
 
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#ebeeef"
-
-        android:orientation="horizontal"
-        android:paddingRight="8dp"
-        android:paddingTop="6dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivAvatar"
-            android:visibility="gone"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/no_image"/>
-
-
-        <ImageView android:id="@+id/ivReaded"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
+        <RelativeLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/readed"/>
+            android:gravity="center"
+            android:background="#ebeeef"
 
-        <LinearLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+            android:paddingRight="8dp"
+            android:paddingTop="6dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAvatar"
+                android:visibility="gone"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/no_image"/>
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_marginRight="36dp"
+            <ImageView android:id="@+id/ivReaded"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/readed"/>
 
-                >
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_alignParentLeft="true"
-
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/l_pl"
-                        android:src="@drawable/ph_left_placeholder"
-                        android:layout_width="215dp"
-                        android:layout_alignParentLeft="true"
-android:layout_gravity="center_vertical"
-                        android:layout_height="143dp"
-                        />
-                    <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-                        app:siBorderColor="#000"
-                        app:siBorderWidth="4dp"
-                        android:id="@+id/msg_img1"
-                        android:layout_alignParentLeft="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="215dp"
-                        android:layout_height="143dp"
-                        app:siShape="@drawable/ph_left"
-                       />
-
-
-
-
-                </FrameLayout>
-
-                <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:paddingBottom="2dp"
-                    android:layout_alignBottom="@+id/msg"
-                    android:id="@+id/imageView7"
-                    />
-
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
 
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="36dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:id="@+id/msg"
-                    android:background="@drawable/left"
 
-                    android:layout_alignParentTop="true"
-                    android:layout_alignStart="@+id/imageView7">
-                    <RelativeLayout
+                    >
+                    <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_alignParentLeft="true"
+
                         android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/l_pl"
+                            android:src="@drawable/ph_left_placeholder"
+                            android:layout_width="215dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="143dp"
+                            />
+                        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                            app:siBorderColor="#000"
+                            app:siBorderWidth="4dp"
+                            android:id="@+id/msg_img1"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="215dp"
+                            android:layout_height="143dp"
+                            app:siShape="@drawable/ph_left"
+                            />
 
 
-                    </RelativeLayout>
 
-                    <ProgressBar
-                        android:id="@+id/progress"
-                        android:visibility="gone"
 
-                        android:layout_width="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="143dp"
-                        android:layout_marginLeft="105dp"
-                        android:background="@xml/progress"/>
+                    </FrameLayout>
 
-                    <TextView android:id="@+id/tvTime"
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:layout_alignBottom="@+id/msg"
+                        android:id="@+id/imageView7"
+                        />
+
+
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#707270"
-                        android:textSize="11sp"
-                        android:paddingBottom="4dp"
-                        android:layout_alignRight="@+id/tvMsgText"
-                        android:paddingRight="8dp"
-                        tools:text="12:34"
-                        android:layout_marginTop="10dp"
-                        android:layout_alignBottom="@+id/tvMsgText" />
-
-                    <TextView android:id="@+id/tvMsgText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="6dp"
-                        android:autoLink="web"
-                        android:linksClickable="true"
-                        android:textColor="#000"
-                        android:textSize="18sp"
-                        android:paddingRight="50dp"
-                        android:paddingBottom="10dp"
-                        tools:text="test"
-                        android:textIsSelectable="true"
-                        android:textColorHighlight="@color/colorPrimaryDark"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/msg"
+                        android:background="@drawable/left"
 
                         android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true" />
-                </RelativeLayout>
-            </RelativeLayout>
-        </LinearLayout>
+                        android:layout_alignStart="@+id/imageView7">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progress"
+                            android:visibility="gone"
+
+                            android:layout_width="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_height="143dp"
+                            android:layout_marginLeft="105dp"
+                            android:background="@xml/progress"/>
+
+                        <TextView android:id="@+id/tvTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#707270"
+                            android:textSize="11sp"
+                            android:paddingBottom="4dp"
+                            android:layout_alignRight="@+id/tvMsgText"
+                            android:paddingRight="8dp"
+                            tools:text="12:34"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignBottom="@+id/tvMsgText" />
+                        <TextView android:id="@+id/tvMsgName"
+                            android:layout_width="95dp"
+
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="16dp"
+                            android:autoLink="web"
+                            android:textStyle="bold"
+                            android:linksClickable="true"
+                            android:textSize="11sp"
+                            android:text="Simple Name"
+                            android:visibility="gone"
+                            android:paddingTop="4dp"
+                            android:textIsSelectable="true"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView android:id="@+id/tvMsgText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="16dp"
+                            android:paddingTop="6dp"
+                            android:autoLink="web"
+                            android:linksClickable="true"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:paddingRight="50dp"
+                            android:paddingBottom="10dp"
+                            tools:text="test"
+                            android:textIsSelectable="true"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:layout_below="@+id/tvMsgName"
+                            android:layout_alignParentStart="true" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-     android:layout_weight="1"
+        android:layout_weight="1"
         android:id="@+id/right"
-     android:gravity="right"
+        android:gravity="right"
         android:background="#ebeeef"
-     android:layout_height="wrap_content"
-     android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RelativeLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,7 +218,7 @@ android:layout_gravity="center_vertical"
                         <ImageView
                             android:id="@+id/r_pl"
                             android:layout_alignParentRight="true"
-android:layout_gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
                             android:src="@drawable/ph_rignt_placeholder"
                             android:layout_width="215dp"
                             android:layout_height="143dp" />
@@ -220,7 +234,7 @@ android:layout_gravity="center_vertical"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center_vertical"
 
-                             />
+                            />
 
 
                     </FrameLayout>
@@ -229,7 +243,7 @@ android:layout_gravity="center_vertical"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
                         android:paddingBottom="2dp"
-android:visibility="gone"
+                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         android:layout_alignBottom="@+id/msg1"
@@ -259,39 +273,52 @@ android:visibility="gone"
                             android:layout_alignBottom="@+id/tvMsgText1"                             android:layout_alignRight="@+id/tvMsgText1"
                             android:paddingBottom="4dp"
                             android:layout_marginRight="10dp">
-                        <TextView android:id="@+id/tvTime1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="1dp"
-                            android:textColor="#707270"
+                            <TextView android:id="@+id/tvTime1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="1dp"
+                                android:textColor="#707270"
 
-                            android:textSize="11sp"
-                            tools:text="12 at,"/>
-                        <ImageView android:id="@+id/ivReaded1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="8dp"
-                            android:layout_toRightOf="@+id/tvTime1"
-                            android:layout_alignBottom="@+id/tvTime1"
-                            android:src="@drawable/unread"/>
+                                android:textSize="11sp"
+                                tools:text="12 at,"/>
+                            <ImageView android:id="@+id/ivReaded1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="8dp"
+                                android:layout_toRightOf="@+id/tvTime1"
+                                android:layout_alignBottom="@+id/tvTime1"
+                                android:src="@drawable/unread"/>
                         </RelativeLayout>
-
+                        <TextView android:id="@+id/tvMsgName1"
+                            android:layout_width="95dp"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:autoLink="web"
+                            android:textStyle="bold"
+                            android:linksClickable="true"
+                            android:textSize="11sp"
+                            android:text="+79030543765"
+                            android:visibility="gone"
+                            android:paddingTop="4dp"
+                            android:textIsSelectable="true"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:layout_alignParentStart="true" />
                         <TextView android:id="@+id/tvMsgText1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="16dp"
+                            android:paddingLeft="8dp"
                             android:autoLink="web"
                             android:linksClickable="true"
                             android:paddingRight="70dp"
                             android:textIsSelectable="true"
                             android:textColorHighlight="@color/colorPrimaryDark"
-android:paddingBottom="10dp"
+                            android:paddingBottom="10dp"
                             android:paddingTop="6dp"
                             android:textSize="18sp"
 
                             android:textColor="#000"
                             tools:text="tnnk"
-                            android:layout_alignParentTop="true"
+                            android:layout_below="@+id/tvMsgName1"
                             android:layout_alignParentStart="true" />
 
 

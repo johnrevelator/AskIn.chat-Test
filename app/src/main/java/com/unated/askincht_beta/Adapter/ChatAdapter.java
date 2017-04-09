@@ -60,6 +60,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageHolder>
         private ImageView ivReaded;
         private TextView tvTimer;
         private TextView tvMessager;
+        private TextView tvName;
+        private TextView tvNamer;
         private ImageView ivAvatarr;
         private ImageView ivImg;
         private ImageView lPl;
@@ -85,6 +87,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageHolder>
             right = ButterKnife.findById(itemView, R.id.right);
             rightT = ButterKnife.findById(itemView, R.id.imageView71);
             tvMessage = ButterKnife.findById(itemView, R.id.tvMsgText);
+            tvName = ButterKnife.findById(itemView, R.id.tvMsgName);
+            tvNamer = ButterKnife.findById(itemView, R.id.tvMsgName1);
             ivAvatar = ButterKnife.findById(itemView, R.id.ivAvatar);
             ivReaded = ButterKnife.findById(itemView, R.id.ivReaded);
             tvTimer = ButterKnife.findById(itemView, R.id.tvTime1);
@@ -121,6 +125,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageHolder>
 
 
 */          holder.tvMessage.setText(((MessageItem) mMessages.get(position)).getText());
+            holder.tvName.setText(((MessageItem) mMessages.get(position)).getUserName());
             Timestamp stamp = new Timestamp(System.currentTimeMillis());
             Timestamp stampD = new Timestamp(((MessageItem) mMessages.get(position)).getTime()* 1000);
 

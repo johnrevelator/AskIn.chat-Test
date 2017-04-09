@@ -28,9 +28,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by dmitryabramichev on 11.09.16.
- */
 public class NavigationDrawer extends SuperFragment {
 
     public interface NavigationDrawerInterface {
@@ -145,7 +142,7 @@ public class NavigationDrawer extends SuperFragment {
 
     private void getProfileInfo() {
         showLoading();
-        Call<ProfileResponse> call = AppMain.getClient().getProfile(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
+        Call<ProfileResponse> call = AppMain.getClient().getProfile(SharedStore.getInstance().getToken());
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {

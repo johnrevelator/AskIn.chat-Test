@@ -18,9 +18,11 @@ import com.unated.askincht_beta.Adapter.RecallAdapter;
 import com.unated.askincht_beta.AppMain;
 import com.unated.askincht_beta.OnlyDialogFragment;
 import com.unated.askincht_beta.Pojo.BusMessages.LogoutResponse;
+import com.unated.askincht_beta.Pojo.CloseResponse;
 import com.unated.askincht_beta.Pojo.Recall;
 import com.unated.askincht_beta.Pojo.RecallsResponse;
 import com.unated.askincht_beta.Pojo.RefreshResponse;
+import com.unated.askincht_beta.Pojo.SimpleResponse;
 import com.unated.askincht_beta.R;
 import com.unated.askincht_beta.Utils.SharedStore;
 
@@ -80,6 +82,7 @@ public class RecallDialogFragment extends SuperDialogFragment {
   TextView desc;*/
     int myInt;
     int rId;
+    int type;
 
     @Override
     public int onInflateViewFragment() {
@@ -91,6 +94,7 @@ public class RecallDialogFragment extends SuperDialogFragment {
         Bundle bundle = this.getArguments();
         myInt = bundle.getInt("id", 0);
        rId = bundle.getInt("rId", 0);
+       type= bundle.getInt("type", 0);
         mRequestItems = new ArrayList<>();
         mAdapter = new RecallAdapter(getActivity(), mRequestItems);
 
@@ -122,11 +126,66 @@ public class RecallDialogFragment extends SuperDialogFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_send:
+                if(type==0)
 setMyRecalls();
+                else
+
+setCloseRecall();
                 break;
 
 
         }
+    }
+    public void setCloseRecall(){
+        if(!text.getText().toString().equals("")&&ratingBar.getRating()!=0.0) {
+
+            Call<CloseResponse> call = AppMain.getClient().closeRequest(SharedStore.getInstance().getToken(),myInt, rId, text.getText().toString(), ratingBar.getRating());
+            call.enqueue(new Callback<CloseResponse>() {
+                @Override
+                public void onResponse(Call<CloseResponse> call, Response<CloseResponse> response) {
+                    if (response.isSuccessful() && response.body().getStatus() == 0) {
+                        dismiss();
+                        text.setText("");
+                    } else if (response.isSuccessful() && response.body().getStatus() == 1026 && !AppMain.isRefresh) {
+                        AppMain.setIsRefresh(true);
+                        Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(), SharedStore.getInstance().getToken());
+                        callr.enqueue(new Callback<RefreshResponse>() {
+                            @Override
+                            public void onResponse(Call<RefreshResponse> callr, Response<RefreshResponse> response) {
+                                closeProgressDialog();
+                                if (response.isSuccessful() && response.body().getStatus() == 0) {
+                                    SharedStore.getInstance().setToken(response.body().getData().getToken());
+                                    setCloseRecall();
+                                    AppMain.setIsRefresh(false);
+
+
+                                } else if (response.body().getStatus() == 1029) {
+                                    AppMain.setIsRefresh(false);
+
+                                    logout();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<RefreshResponse> callr, Throwable t) {
+                                closeProgressDialog();
+                            }
+                        });
+                    } else if (response.body().getStatus() == 1027 || response.body().getStatus() == 1028 || response.body().getStatus() == 1029) {
+
+
+                        logout();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CloseResponse> call, Throwable t) {
+                    closeProgressDialog();
+                }
+            });
+        }else{
+                Toast.makeText(getActivity(),"Оставьте отзыв и рейтинг",Toast.LENGTH_SHORT).show();
+            }
     }
     public void logout(){
         Call<LogoutResponse> call = AppMain.getClient().logout(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());

@@ -6,7 +6,7 @@ public class Constants {
         public static final String BASE_URL = "http://beta.api.askin.chat/api/v2/";
         public static final String ART_URL = "http://beta.askinchat.ru/artapi/v2/";
         public static final String SIMPLE_URL = "http://beta.app.askin.chat/";
-        public static final String SOCKET_URL = "http://beta.askinchat.ru/";//39128";
+        public static final String SOCKET_URL = "http://beta.askinchat.ru/";
 
         public static final String AUTH = "auth/login";
         public static final String REFRESH = "auth/refresh";
@@ -39,6 +39,9 @@ public class Constants {
         public static final String UPLOAD= "storage/uploadChatFile";
         public static final String LOAD= "storage/loadChatFile";
         public static final String DEV= "devlogin";
+        public static final String EDIT_PROFILE= "auth/editProfile";
+        public static final String CLOSE= "requests/closeRequest";
+        public static final String GET_REQUEST_SUPPORT= "conversations/getRequestSupport";
     }
 
     public static class PREFERENCES {

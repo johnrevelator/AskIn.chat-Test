@@ -18,6 +18,8 @@ public class Shop implements Serializable {
     private String last_message;
     private long last_message_time;
     private double lat;
+    private boolean closed;
+    private int closed_shop_id;
     private int cnt_messages;
     private int new_messages;
     private double lon;
@@ -71,7 +73,12 @@ public class Shop implements Serializable {
     public double getLon() {
         return lon;
     }
-
+    public boolean isClosed() {
+        return closed;
+    }
+    public int getClosedShopId(){
+        return closed_shop_id;
+    }
     public int getCnt_messages() {
         return cnt_messages;
     }

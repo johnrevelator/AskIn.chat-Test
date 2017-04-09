@@ -25,6 +25,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unated.askincht_beta.R;
@@ -42,7 +43,6 @@ public class MapChat extends AppCompatActivity {
     double value;
     double lat;
     private GoogleMap gMap;
-    private SupportMapFragment mSupportMapFragment;
     private String[] colors = {"#7fff7272", "#7f31c7c5", "#7fff8a00"};
     @Bind(R.id.zoombutton)
     CircleButton zoom;
@@ -80,7 +80,7 @@ public class MapChat extends AppCompatActivity {
         public void onMapReady(GoogleMap googleMap) {
 
             gMap = googleMap;
-            gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 17));
+
             int height = 100;
             int width = 100;
             BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.point);
@@ -159,6 +159,14 @@ public class MapChat extends AppCompatActivity {
 
                         }
                     });
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(lat,lng)) // Sets the center of the map to
+                    .zoom(17)
+                    // Sets the zoom
+                    .tilt(60)    // Sets the tilt of the camera to 30 degrees
+                    .build();    // Creates a CameraPosition from the builder
+            gMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                    cameraPosition));
 
 
 
