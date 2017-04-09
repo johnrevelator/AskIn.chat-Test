@@ -332,13 +332,15 @@ Log.i(TAG,response.body().getData().getRequests().get(0).getName() );
         return msg;
     }
     public void visiable() {
-        if(mShopList.size()>5) {
-            moreB.setText(/*"Расширить радиус до "+(mMyRequestItem.getRadius()/10000+1)*10+" км"*/"Еще");
+        if(mShopList.size()% 6== 0) {
+            moreB.setText("Еще");
             moreB.setVisibility(View.VISIBLE);
         moreB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EventBus.getDefault().post(getRid());
+                moreB.setVisibility(View.INVISIBLE);
+
             }
         });
         }

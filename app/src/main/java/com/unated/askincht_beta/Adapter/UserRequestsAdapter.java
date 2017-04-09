@@ -1,6 +1,7 @@
 package com.unated.askincht_beta.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -112,14 +113,18 @@ public class UserRequestsAdapter extends RecyclerView.Adapter<UserRequestsAdapte
                 });*/
         holder.tvCity.setText(mRequests.get(position).getCity());
         holder.tvDist.setVisibility(View.GONE);
-        if(mRequests.get(position).getLastMsg() ==null)
-            holder.lastMsg.setText("Фотография");
-        else
-        if (mRequests.get(position).getLastMsg().length() > 15)
-            holder.lastMsg.setText(mRequests.get(position).getLastMsg().substring(0,15) + "...");
-        else
-            holder.lastMsg.setText(mRequests.get(position).getLastMsg());
-
+        if(mRequests.get(position).isClosed()){
+            holder.lastMsg.setText("Сделка завершена");
+            holder.lastMsg.setTextColor(Color.parseColor("#00CC00"));
+        }
+        else {
+            if (mRequests.get(position).getLastMsg() == null)
+                holder.lastMsg.setText("Фотография");
+            else if (mRequests.get(position).getLastMsg().length() > 40)
+                holder.lastMsg.setText(mRequests.get(position).getLastMsg().substring(0, 40) + "...");
+            else
+                holder.lastMsg.setText(mRequests.get(position).getLastMsg());
+        }
         holder.tvMsgText.setText(mRequests.get(position).getText());
         holder.more.setTag(SharedStore.getInstance().getMyShop().getId() + ";" +mRequests.get(position).getText()
                 +";"+mRequests.get(position).getId()/*mRequests.get(position).getShop_id()*/ );
@@ -135,8 +140,9 @@ public class UserRequestsAdapter extends RecyclerView.Adapter<UserRequestsAdapte
             Log.i("MyLog",DateFormater.getFormatedDate(mRequests.get(position).getTime() * 1000, "dd")+"day");
 
             holder.tvTime.setText(DateFormater.getFormatedDate(mRequests.get(position).getTime() * 1000, "dd")+" "+numToWord(DateFormater.getFormatedDate(mRequests.get(position).getTime() * 1000, "MM")));
-        }        holder.llParent.setTag(SharedStore.getInstance().getMyShop().getId() + ";" +mRequests.get(position).getText()
-                +";"+mRequests.get(position).getId()/*mRequests.get(position).getShop_id()*/ );
+        }
+        holder.llParent.setTag(SharedStore.getInstance().getMyShop().getId() + ";" +mRequests.get(position).getText()
+                +";"+mRequests.get(position).getId()+ ";" + mRequests.get(position).isClosed() );
         holder.llParent.setOnClickListener(getOnClickListener());
         holder.llParent.setOnLongClickListener(getOnLongClickListener());
        /* holder.aElect.setOnClickListener( new View.OnClickListener() {

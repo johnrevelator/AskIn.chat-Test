@@ -5,7 +5,7 @@ public class InviteMessage {
     private String chatId;
     private String friendPhone;
 
-    public InviteMessage(String chatId, String shopId){
+    public InviteMessage(String chatId, String friendPhone){
         this.chatId = chatId;
         this.friendPhone =friendPhone;
     }

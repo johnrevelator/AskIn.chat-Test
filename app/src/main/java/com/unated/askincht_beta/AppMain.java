@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -74,6 +75,7 @@ public class AppMain extends Application {
 
         mContext = getApplicationContext();
         setupRetrofit();
+        Fabric.with(this, new Answers());
         Fabric.with(this, new Crashlytics());
         VKSdk.initialize(mContext);
         initImageLoader(mContext);

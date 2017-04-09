@@ -9,7 +9,14 @@ public class NewInviteMessage {
     private String shop_id;
     private String guest_user_id;
 
-
+    public NewInviteMessage(String chat_id, String chat_name,String user_name, String request_id,String shop_id,String guest_user_id) {
+        this.request_id = request_id;
+        this.shop_id = shop_id;
+        this.chat_id = chat_id;
+        this.guest_user_id = guest_user_id;
+        this.user_name = user_name;
+        this.chat_name = chat_name;
+    }
 
     public String getChat_id() {
         return chat_id;

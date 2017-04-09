@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.unated.askincht_beta.Activity.LoginActivity;
 import com.unated.askincht_beta.AppMain;
+import com.unated.askincht_beta.Fragments.MyRequestsFragment;
 import com.unated.askincht_beta.Fragments.UserRequestsFragment;
 import com.unated.askincht_beta.Pojo.BusMessages.LogoutResponse;
 import com.unated.askincht_beta.Pojo.RefreshResponse;
@@ -29,6 +30,7 @@ import retrofit2.Response;
 public class MoreCardUsersDialogFragment extends SuperDialogFragment {
 
     Fragment fragment;
+    private Fragment mFragment;
 
 
    /* @Bind(R.id.share_variant)
@@ -48,6 +50,7 @@ public class MoreCardUsersDialogFragment extends SuperDialogFragment {
 
     LinearLayout delete;
     int reqId;
+    int type;
 
 
     @Override
@@ -65,6 +68,8 @@ public class MoreCardUsersDialogFragment extends SuperDialogFragment {
     public View onCreateViewFragment(View view) {
         Bundle bundle = this.getArguments();
         reqId = bundle.getInt("rId");
+        type= bundle.getInt("type",0);
+        cry.setVisibility(View.GONE);
 
 
         return view;
@@ -93,6 +98,55 @@ public class MoreCardUsersDialogFragment extends SuperDialogFragment {
             public void onFailure(Call<LogoutResponse> call, Throwable t) {
             }
 
+        });
+    }
+    private void deleteMyRequest(final String request_id) {
+
+        Call<SimpleResponse> call = AppMain.getClient().deleteMyRequest(SharedStore.getInstance().getSID(), request_id,SharedStore.getInstance().getToken());
+        call.enqueue(new Callback<SimpleResponse>() {
+            @Override
+            public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+                if (response.isSuccessful()&&response.body().getStatus()==0) {
+                    mFragment = new MyRequestsFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, mFragment, mFragment.getClass().getName()).commitAllowingStateLoss( );
+dismiss();
+
+                } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
+                    AppMain.setIsRefresh(true);
+                    Call<RefreshResponse> callr = AppMain.getClient().refresh(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());
+                    callr.enqueue(new Callback<RefreshResponse>() {
+                        @Override
+                        public void onResponse(Call<RefreshResponse> callr, Response<RefreshResponse> response) {
+                            closeProgressDialog();
+                            if (response.isSuccessful() && response.body().getStatus() == 0) {
+                                SharedStore.getInstance().setToken(response.body().getData().getToken());
+                                deleteRequest(request_id);
+                                AppMain.setIsRefresh(false);
+
+
+                            }else if(response.body().getStatus() == 1029){
+                                AppMain.setIsRefresh(false);
+
+                                logout();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<RefreshResponse> callr, Throwable t) {
+                            closeProgressDialog();
+                        }
+                    });
+                }else  if(response.body().getStatus() == 1027||response.body().getStatus() == 1028||response.body().getStatus() == 1029) {
+
+
+                    logout();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SimpleResponse> call, Throwable t) {
+
+            }
         });
     }
     private void deleteRequest(final String request_id) {
@@ -157,6 +211,9 @@ public class MoreCardUsersDialogFragment extends SuperDialogFragment {
                 break;
             case R.id.delete:
                 Log.i("MyLog", String.valueOf(reqId));
+                if(type==1)
+
+deleteMyRequest(String.valueOf(reqId));
 deleteRequest(String.valueOf(reqId));
                 break;
             /*case R.id.share_variant:

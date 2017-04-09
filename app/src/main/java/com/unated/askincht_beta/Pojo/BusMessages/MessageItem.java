@@ -15,6 +15,7 @@ public class MessageItem implements ChatInterface{
     private long time;
     private long last_online;
     private String incoming;
+    private String username;
     private String readed;
     private boolean online;
     private boolean is_file;
@@ -52,6 +53,9 @@ public class MessageItem implements ChatInterface{
 
     public String getUserId() {
         return user_id;
+    }
+    public String getUserName() {
+        return username;
     }
 
     public String getReaded() {

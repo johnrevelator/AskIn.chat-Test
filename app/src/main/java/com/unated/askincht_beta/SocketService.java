@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.unated.askincht_beta.Pojo.BusMessages.BadMessage;
+import com.unated.askincht_beta.Pojo.BusMessages.CloseMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.ConnectMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.CounterMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.DisconnectMessage;
@@ -132,6 +133,7 @@ e.printStackTrace();
             mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
             mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
             mSocket.on("newmessage", onNewMessageListener);//
+            mSocket.on("close_request", onCloseRequest);//
             mSocket.on("single_word", onSingle);//
             mSocket.on("invalid_token", onInvalidToken);//
             mSocket.on("new_invite_to_chat", onInviteListner);//
@@ -358,13 +360,37 @@ e.printStackTrace();
             EventBus.getDefault().post(myRequestItem);
         }
     };
+    private Emitter.Listener onCloseRequest = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.d(TAG, "onCloseRequest ");
+            try {
+                JSONObject jsonObject = new JSONObject(args[0].toString());
+                Log.d(TAG, "onCloseRequest" + args[0].toString());
+                EventBus.getDefault().post(new CloseMessage( jsonObject.optString("shop_id"), jsonObject.optString("rating")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+        }
+    };
     private Emitter.Listener onInviteListner = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            Log.d(TAG, "new_invite_to_chat ");
 
             Log.d(TAG, "new_invite_to_chat " + args[0].toString());
-            NewInviteMessage nim = new Gson().fromJson(((JSONObject) args[0]).toString(),NewInviteMessage.class);
+            NewInviteMessage nim=null;
+            try {
+                JSONObject jsonObject = new JSONObject(args[0].toString());
+                nim= new NewInviteMessage(jsonObject.optString("request_id"), jsonObject.optString("shop_id"), jsonObject.optString("guest_user_id")
+                        , jsonObject.optString("user_name") , jsonObject.optString("chat_name") , jsonObject.optString("chat_id"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             EventBus.getDefault().post(nim);
         }
     };

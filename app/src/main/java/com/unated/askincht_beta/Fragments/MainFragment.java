@@ -2,7 +2,9 @@ package com.unated.askincht_beta.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -12,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -22,12 +25,13 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,7 +42,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.unated.askincht_beta.AppMain;
@@ -55,6 +58,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 import at.markushi.ui.CircleButton;
@@ -63,6 +67,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class MainFragment extends SuperFragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -83,6 +89,8 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
     CircleButton unzoom;
     @Bind(R.id.tvWalk)
     TextView tvWalk;
+    @Bind(R.id.search)
+    ImageView search;
     @Bind(R.id.tvCar)
     TextView tvCar;
     @Bind(R.id.floatingActionButton)
@@ -101,7 +109,7 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
     private int valueM;
     LocationManager locationManager;
     private int first = 0;
-    double constantZoom=8.681171  ;
+    double constantZoom=9.9;
     ArrayList<Spanned> helpers;
 
     final String[] mCats = {"Нужен адвокат при разводе", "Нужен семейный адвокат", "Нужен оценщик", "Нужно организовать праздник под ключ",
@@ -156,7 +164,7 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
                             helpers=new ArrayList<>();
 
                             for(int i=0;i<response.body().getData().getText().size();i++)
-                            helpers.add(Html.fromHtml(response.body().getData().getText().get(i)));
+                                helpers.add(Html.fromHtml(response.body().getData().getText().get(i)));
                             mEtSearch.setAdapter(new ArrayAdapter<>(getActivity(),
                                     R.layout.item_search, helpers));
 
@@ -181,47 +189,10 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
 
-                            mediaPlayer.start();
+                mediaPlayer.start();
 
-                int needVal = 0;
+                int needVal = trueSeekbar(value);
 
-                if (value <= 25) {
-                    needVal = (int) (value / 2.5);
-                    Log.i(TAG, String.valueOf(needVal));
-
-                }
-                if(value > 25&&value<28.125){
-                    needVal = 15;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 28.125&&value<31.25){
-                    needVal = 20;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 31.25&&value<34.375){
-                    needVal = 25;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 34.375&&value<37.5){
-                    needVal = 30;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 37.5&&value<40.625){
-                    needVal = 35;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 40.625&&value<43.75){
-                    needVal = 40;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 43.75&&value<46.875){
-                    needVal = 45;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
-                if(value > 46.875&&value<=50){
-                    needVal = 50;
-                    Log.i(TAG, String.valueOf(needVal));
-                }
                 valueM = value * 1000;
                 Log.i(TAG, String.valueOf(valueM));
                 int min = ((60*needVal/5));
@@ -278,29 +249,18 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
             }
         });
         mSeekBar.setFocusable(true);
-
-        mEtSearch.setOnTouchListener(new View.OnTouchListener() {
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final int DRAWABLE_LEFT = 0;
-                final int DRAWABLE_TOP = 1;
-                final int DRAWABLE_RIGHT = 2;
-                final int DRAWABLE_BOTTOM = 3;
+            public void onClick(View view) {
 
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (mEtSearch.getRight() - mEtSearch.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                EventBus.getDefault().post(getSearchMessage());
 
-                        EventBus.getDefault().post(getSearchMessage());
-
-                        Log.i(TAG, "поиск");
-                        callSearchDialog();
-
-                        return true;
-                    }
-                }
-                return false;
+                Log.i(TAG, "поиск");
+                callSearchDialog();
             }
         });
+
+
 
         mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -319,6 +279,22 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
         });
         return view;
     }
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                "Куку епта");
+        try {
+            startActivityForResult(intent, 231);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getActivity(),
+                    "Не куку епта",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
     @NonNull
@@ -354,11 +330,11 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
 
 
         Log.i(TAG, (float) (15.8 - Math.log(value* 5.508)/Math.log(2))+" true     may be");
-                gMap.animateCamera( CameraUpdateFactory.zoomTo(zooming) );
+        gMap.animateCamera( CameraUpdateFactory.zoomTo(zooming) );
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-        isSeek=false;
+                isSeek=false;
             }
         }, 500);
 
@@ -388,6 +364,94 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
         }
 
     }
+    int needV=0;
+
+    public int trueSeekbarBack(int value){
+        if (value <= 10) {
+            needV = (int) (value *2.5);
+            Log.i(TAG, String.valueOf(needV));
+
+        }
+        if(value > 10&&value<15){
+            needV = 28;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 15&&value<20){
+            needV =31;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value >20&&value<25){
+            needV =34;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 25&&value<30){
+            needV= 37;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 30&&value<35){
+            needV = 40;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 35&&value<40){
+            needV = 43;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 40&&value<45){
+            needV = 46;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        if(value > 45&&value<=50){
+            needV = 50;
+            Log.i(TAG, String.valueOf(needV));
+        }
+        return needV;
+    }
+    public int trueSeekbar(int value){
+        int needVal=0;
+        if (value <= 25) {
+            needVal = (int) (value / 2.5);
+            Log.i(TAG, String.valueOf(needVal));
+
+        }
+        if (value <=2.5) {
+            needVal = 1;
+            Log.i(TAG, String.valueOf(needVal));
+
+        }
+        if(value > 25&&value<28.125){
+            needVal = 15;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 28.125&&value<31.25){
+            needVal = 20;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 31.25&&value<34.375){
+            needVal = 25;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 34.375&&value<37.5){
+            needVal = 30;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 37.5&&value<40.625){
+            needVal = 35;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 40.625&&value<43.75){
+            needVal = 40;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 43.75&&value<46.875){
+            needVal = 45;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        if(value > 46.875&&value<=50){
+            needVal = 50;
+            Log.i(TAG, String.valueOf(needVal));
+        }
+        return needVal;
+    }
 
 
     private LatLngBounds calculateBounds(LatLng center, double radius) {
@@ -396,6 +460,19 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
                 include(SphericalUtil.computeOffset(center, radius, 90)).
                 include(SphericalUtil.computeOffset(center, radius, 180)).
                 include(SphericalUtil.computeOffset(center, radius, 270)).build();
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode ==231 && resultCode == RESULT_OK)
+        {
+            // Populate the wordsList with the String values the recognition engine thought it heard
+            ArrayList<String> matches = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+            for(int i=0;i<matches.size();i++){
+                Log.i("MyLog",matches.get(i));
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -418,7 +495,7 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
 
                     Log.d(TAG, zooming+"  zoomOnMapReady");
                     if(!isSeek)
-                    conpert();
+                        conpert();
 
 
 
@@ -608,9 +685,9 @@ public class MainFragment extends SuperFragment implements GoogleApiClient.Conne
         if (SharedStore.getInstance().getMyLat() != null || !SharedStore.getInstance().getMyLat().equals("")) {
             if (location != null) {
                 latLng = new LatLng(location.getLatitude(), location.getLongitude());
-if(first<1)
-    gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), (float) constantZoom
-    ));
+                if(first<1)
+                    gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), (float) constantZoom
+                    ));
 
                 SharedStore.getInstance().setMyLat(location.getLatitude());
                 SharedStore.getInstance().setMyLng(location.getLongitude());
@@ -672,17 +749,17 @@ if(first<1)
 
 
 
-boolean isMap=false;
-public void conpert(){
-    isMap=true;
-    zooming = gMap.getCameraPosition().zoom;
+    boolean isMap=false;
+    public void conpert(){
+        isMap=true;
+        zooming = gMap.getCameraPosition().zoom;
 
-    Log.d(TAG, Math.pow(2,(15.8 -zooming))/5.508+"  seek");
-    seekBarLevel= Double.valueOf(Math.pow(2,(15.8 -zooming))/5.508).intValue();
-        mSeekBar.setProgress(seekBarLevel);
+        Log.d(TAG, Math.pow(2,(15.8 -zooming))/5.508+"  seek");
+        seekBarLevel= (int) (Math.pow(2,(15.8 -zooming))/5.508);
+        mSeekBar.setProgress(trueSeekbarBack(seekBarLevel));
 
-    isMap=false;
-}
+        isMap=false;
+    }
 
     @Override
     public void onConnectionSuspended(int i) {

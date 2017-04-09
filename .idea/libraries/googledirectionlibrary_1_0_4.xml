@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="googledirectionlibrary-1.0.4">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.akexorcist/googledirectionlibrary/1.0.4/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.akexorcist/googledirectionlibrary/1.0.4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/2adfdd8c38cc77814b799d8c24cf7194cc102042/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/2adfdd8c38cc77814b799d8c24cf7194cc102042/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

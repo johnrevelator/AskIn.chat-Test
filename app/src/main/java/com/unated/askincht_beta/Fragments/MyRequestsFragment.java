@@ -12,10 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.unated.askincht_beta.Activity.ChatActivity;
 import com.unated.askincht_beta.Activity.LoginActivity;
 import com.unated.askincht_beta.Activity.ShopListActivity;
 import com.unated.askincht_beta.Adapter.MyRequestsAdapter;
 import com.unated.askincht_beta.AppMain;
+import com.unated.askincht_beta.Dialog.MoreCardDialogFragment;
+import com.unated.askincht_beta.Dialog.MoreCardUsersDialogFragment;
 import com.unated.askincht_beta.Dialog.RequestOptionsDialogFragment;
 import com.unated.askincht_beta.Pojo.BusMessages.CounterMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.LogoutResponse;
@@ -93,28 +96,56 @@ public class MyRequestsFragment extends SuperFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rvRequests.setLayoutManager(linearLayoutManager);
         rvRequests.setAdapter(mAdapter);
-
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] tmp = view.getTag().toString().split(";");
-                for (int i = 0; i < mRequestItems.size(); i++) {
-                    if(mRequestItems.get(i).getShops().size()>0){
-                    if (mRequestItems.get(i).getId() == Integer.valueOf(tmp[0]).intValue()&&mRequestItems.get(i).getShops().get(0).getCnt_messages() >1 ) {
-                        ShopListFragment shopListFragment=new ShopListFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("extra_item", mRequestItems.get(i).getId() );
-                        shopListFragment.setArguments(bundle);
-Log.i("MyLog", String.valueOf(mRequestItems.get(i).getId()));
-                        getFragmentManager().beginTransaction().replace(R.id.container,shopListFragment, shopListFragment.getClass().getName()).commit();
+                String[] sid=view.getTag().toString().split(";");
+
+                switch (view.getId()){
+                    case R.id.llParent:
+                        Log.i("MyLog","llParent");
+
+                        String[] tmp = view.getTag().toString().split(";");
+                        for (int i = 0; i < mRequestItems.size(); i++) {
+                            if (mRequestItems.get(i).getShops().size() > 0) {
+                                if (mRequestItems.get(i).getId() == Integer.valueOf(tmp[0]).intValue() && mRequestItems.get(i).getShops().get(0).getCnt_messages() > 1) {
+                                    ShopListFragment shopListFragment = new ShopListFragment();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("extra_item", mRequestItems.get(i).getId());
+                                    shopListFragment.setArguments(bundle);
+                                    Log.i("MyLog", String.valueOf(mRequestItems.get(i).getId()));
+                                    getFragmentManager().beginTransaction().replace(R.id.container, shopListFragment, shopListFragment.getClass().getName()).commit();
 
 
+                                    break;
+                                }
+                            }
+                        }
                         break;
-                    }
-                }
+                    case R.id.moree:
+                        Log.i("MyLog","more");
+                        for (int i = 0; i < mRequestItems.size(); i++) {
+                            if (mRequestItems.get(i).getShops().size() > 0) {
+                                if (mRequestItems.get(i).getId() == Integer.valueOf(sid[0])) {
+                                    MoreCardUsersDialogFragment moreCardDialogFragment = new MoreCardUsersDialogFragment();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("type", 1);
+                                    bundle.putInt("id", Integer.parseInt(sid[0]));
+                                    bundle.putInt("rId", mRequestItems.get(i).getId());
+                                    moreCardDialogFragment.setArguments(bundle);
+                                    moreCardDialogFragment.show(getFragmentManager(), "TAG");
+
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
                 }
             }
         });
+
+
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -227,6 +258,8 @@ Log.i("MyLog", String.valueOf(mRequestItems.get(i).getId()));
             public void onResponse(Call<MyRequestResponse> call, Response<MyRequestResponse> response) {
                 closeProgressDialog();
                 if (response.isSuccessful() && response.body().getStatus() == 0) {
+                    if(response.body().getData().getRequests().size()==0)
+                        nope.setVisibility(View.VISIBLE);
                     mRequestItems.clear();
                     mRequestItems.addAll(response.body().getData().getRequests());
 
@@ -240,6 +273,7 @@ Log.i("MyLog", String.valueOf(mRequestItems.get(i).getId()));
                     public void onResponse(Call<RefreshResponse> callr, Response<RefreshResponse> response) {
                         closeProgressDialog();
                         if (response.isSuccessful() && response.body().getStatus() == 0) {
+
                             SharedStore.getInstance().setToken(response.body().getData().getToken());
                             getMyRequests();
                             AppMain.setIsRefresh(false);
@@ -262,8 +296,7 @@ Log.i("MyLog", String.valueOf(mRequestItems.get(i).getId()));
 
                 logout();
             }
-                if(response.body().getData().getRequests().size()==0)
-                    nope.setVisibility(View.VISIBLE);
+
             }
 
             @Override

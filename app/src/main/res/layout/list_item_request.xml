@@ -11,124 +11,148 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="120dp"
-        android:background="@drawable/restan_req"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="16dp"
-                    >
 
-        <LinearLayout android:id="@+id/llMsgStatus"
-                      android:layout_width="30dp"
-                      android:layout_height="30dp"
-            android:orientation="vertical"
-                      android:layout_alignParentRight="true"
-                      android:layout_centerVertical="true"
-                      android:background="@drawable/bg_count"
-                      android:gravity="center">
-
-            <TextView android:id="@+id/tvMsgCount"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="#fff"
-                android:fontFamily="sans-serif-light"
-
-                android:textSize="14sp"
-                      android:textStyle="bold"
-                      tools:text="15"/>
-
-        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/restan_req"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="16dp">
 
 
+            <LinearLayout
+                android:id="@+id/llMsgStatus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_count"
+                android:gravity="center"
+                android:orientation="vertical">
 
-
-
-        <TextView android:id="@+id/tvTime"
-                    android:paddingTop="2dp"
-            android:textSize="13sp"
-            android:fontFamily="sans-serif-light"
-
-            android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvMsgCount"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@id/llMsgStatus"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="#707270"
-                    tools:text="12:34"/>
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="#fff"
 
-        <TextView
-            android:paddingLeft="8dp"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/textView3"
-            android:textSize="12sp"
-            android:fontFamily="sans-serif-light"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="15" />
 
-            android:layout_toEndOf="@+id/imageView3"
-            android:layout_alignTop="@+id/imageView3" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_marginLeft="48dp"
-            android:layout_height="20dp"
-            android:visibility="gone"
-            android:tint="@color/bb_darkBackgroundColor"
-            app:srcCompat="@drawable/ic_clock"
-            android:id="@+id/imageView3"
-            android:layout_alignParentBottom="true"
-            />
-
-        <TextView android:id="@+id/tvMsgText"
-            android:paddingLeft="50dp"
-            android:paddingRight="48dp"
-            android:paddingTop="36dp"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-light"
-
-            android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textColor="#3d3d3d"
-                  tools:text="Какой-то большой важный и подобное запрос"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            </LinearLayout>
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+
+                android:layout_below="@id/llMsgStatus"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif-light"
+                android:paddingTop="2dp"
+                android:textColor="#707270"
+                android:textSize="13sp"
+                tools:text="12:34" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignTop="@+id/imageView3"
+                android:layout_toEndOf="@+id/imageView3"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_vertical"
+
+                android:paddingLeft="8dp"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="48dp"
+                android:tint="@color/bb_darkBackgroundColor"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_clock" />
+
+            <TextView
+                android:id="@+id/tvMsgText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="48dp"
+
+                android:fontFamily="sans-serif-light"
+                android:paddingLeft="50dp"
+                android:paddingTop="36dp"
+                android:textColor="#3d3d3d"
+                android:textSize="16sp"
+                tools:text="Какой-то большой важный и подобное запрос" />
+
+            <ImageView
+                android:id="@+id/moree"
+                android:layout_width="21dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:src="@drawable/more" />
+
+            <TextView
+                android:id="@+id/is_done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="Сделка завершена"
+                android:textColor="#00CC00"
+                android:visibility="gone" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="68dp"
-            android:paddingLeft="3dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_marginTop="20dp"
-            android:layout_alignParentStart="true">
+            android:paddingLeft="3dp">
 
             <TextView
-                android:text="Ответов"
-                android:gravity="center"
-                android:paddingBottom="4dp"
+                android:id="@+id/textView4"
                 android:layout_width="68dp"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-light"
-
-                android:id="@+id/textView4"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+
+                android:paddingBottom="4dp"
+                android:text="Ответов"
+                android:textSize="12sp" />
 
             <TextView
-                android:text="0"
-                android:fontFamily="sans-serif-light"
-
-                android:textSize="34sp"
-                android:textStyle="normal"
-                android:gravity="center_horizontal"
-                android:layout_below="@+id/textView4"
+                android:id="@+id/ansCount"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
-                android:id="@+id/ansCount" />
+                android:layout_below="@+id/textView4"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:text="0"
+                android:textSize="34sp"
+                android:textStyle="normal" />
         </RelativeLayout>
+
     </RelativeLayout>
 </LinearLayout>

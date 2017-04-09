@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -29,21 +30,26 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.akexorcist.googledirection.DirectionCallback;
@@ -62,10 +68,13 @@ import com.unated.askincht_beta.Activity.LoginActivity;
 import com.unated.askincht_beta.Activity.PhoneDialogFragment;
 import com.unated.askincht_beta.Adapter.ChatAdapter;
 import com.unated.askincht_beta.AppMain;
+import com.unated.askincht_beta.Dialog.RecallDialogFragment;
 import com.unated.askincht_beta.Fragments.MapChat;
 import com.unated.askincht_beta.Fragments.SuperFragment;
 import com.unated.askincht_beta.Pojo.BalanceResponse;
+import com.unated.askincht_beta.Pojo.BusMessages.CloseMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.CounterMessage;
+import com.unated.askincht_beta.Pojo.BusMessages.InviteMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.ListenWritingMessage;
 import com.unated.askincht_beta.Pojo.BusMessages.LogoutResponse;
 import com.unated.askincht_beta.Pojo.BusMessages.MessageItem;
@@ -113,6 +122,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.vk.sdk.VKUIHelper.getApplicationContext;
+
 
 public class ChatFragment extends SuperFragment {
 
@@ -123,50 +134,39 @@ public class ChatFragment extends SuperFragment {
 
     @Bind(R.id.rvChat)
     RecyclerView mRvChat;
-    @Bind(R.id.progBarWalk)
-    ProgressBar progWalk;
-    @Bind(R.id.progBarDrive)
-    ProgressBar progDrive;
+
     @Bind(R.id.etText)
     EditText mEtText;
     @Bind(R.id.ivSend)
     ImageView mIvSend;
     @Bind(R.id.ivAdd)
     ImageView mAdd;
-    @Bind(R.id.gtmap)
-    ImageView gtmap;
-    @Bind(R.id.invite)
-    ImageView invite;
     @Bind(R.id.call)
-    ImageView call;
-    @Bind(R.id.chat_more)
-    ImageView chat_more;
+    ImageView calling;
+    @Bind(R.id.more_chat)
+LinearLayout moreChat;
     @Bind(R.id.textView7)
     TextView mTitleView;
-    @Bind(R.id.tvMan)
-    TextView tvWalkTime;
-    @Bind(R.id.tvCar)
-    TextView tvDriveTime;
     @Bind(R.id.tvMsgCount1)
     TextView tvMsgCount;
+    @Bind(R.id.sale)
+    RelativeLayout sale;
     @Bind(R.id.status)
     TextView status;
     @Bind(R.id.writing_stat)
     TextView writingStatus;
-    @Bind(R.id.timen)
-    LinearLayout timen;
-    @Bind(R.id.shtorka)
-    LinearLayout shtorka;
+
     @Bind(R.id.nav)
     LinearLayout nav;
-    @Bind(R.id.sep)
-    LinearLayout sep;
-    @Bind(R.id.last_time)
-    LinearLayout timel;
+
+
     @Bind(R.id.title_chat)
     LinearLayout titChat;
     @Bind(R.id.llMsgStatus)
     LinearLayout llMsgStatus;
+    @Bind(R.id.close_sale)
+    ImageView closeSale;
+
     int check;
     double lat;
     double lng;
@@ -376,8 +376,12 @@ public class ChatFragment extends SuperFragment {
                     }
                 });
             }
+        } else if (requestCode == 234 && resultCode == Activity.RESULT_OK) {
+            contactPicked(data);
+
         }
-    }
+
+        }
     public static Uri getImageContentUri(Context context, File imageFile) {
         String filePath = imageFile.getAbsolutePath();
         Cursor cursor = context.getContentResolver().query(
@@ -507,9 +511,10 @@ public class ChatFragment extends SuperFragment {
             }
         });
 
+
         return view;
     }
-
+    int idChat;
     private void getMessages() {
         showProgressDialog();
         final String[] separated = mShopId.split(";");
@@ -531,13 +536,32 @@ public class ChatFragment extends SuperFragment {
 */
                     mAdapter.notifyDataSetChanged();
                     mRvChat.scrollToPosition(mAdapter.getItemCount() - 1);
-                    timel.setVisibility(View.VISIBLE);
                     titChat.setVisibility(View.VISIBLE);
+                    if(isClose)
+                    sale.setVisibility(View.VISIBLE);
+
                     if (check == 0) {
-                        chat_more.setVisibility(View.VISIBLE);
+/*
                         timen.setVisibility(View.VISIBLE);
-                        nav.setVisibility(View.VISIBLE);
+*/
+                        if(!separated[0].equals(String.valueOf(20))) {
+
+
+                            nav.setVisibility(View.VISIBLE);
+                            moreChat.setVisibility(View.VISIBLE);
+                        }
                     } else {
+                        /*calling.setBackground(getResources().getDrawable(R.drawable.coupon));
+                        if(!separated[0].equals(String.valueOf(20))) {
+
+
+                            nav.setVisibility(View.VISIBLE);
+                        } else{
+                            sale.setVisibility(View.GONE);
+                        }
+*/
+                        nav.setVisibility(View.GONE);
+                        moreChat.setVisibility(View.GONE);
                         if (Integer.valueOf(SharedStore.getInstance().getBalance()) <= 25) {
                             final FrameLayout frameView = new FrameLayout(getActivity());
 
@@ -555,12 +579,10 @@ public class ChatFragment extends SuperFragment {
                             messageView.setGravity(Gravity.CENTER);
 
                         }
-                        ViewGroup.LayoutParams params = timel.getLayoutParams();
-                        params.height = 70;
-                        timel.setLayoutParams(params);
+
+
                     }
-                    if (value != 0)
-                        getTimeDir();
+
                     setRead();
 
                 } else  if(response.isSuccessful() &&response.body().getStatus() == 1026&&! AppMain.isRefresh) {
@@ -601,6 +623,7 @@ public class ChatFragment extends SuperFragment {
             }
         });
     }
+
 
     private void setRead() {
         final String[] separated = mShopId.split(";");
@@ -650,6 +673,7 @@ public class ChatFragment extends SuperFragment {
             }
         });
     }
+    boolean isClose;
 
     @Override
     public void onAttachFragment(Activity activity) {
@@ -666,16 +690,22 @@ public class ChatFragment extends SuperFragment {
             if(separated[2].equals(mRequestId)){
                 Log.i(TAG,separated[2]+" "+mRequestId);
                 check=1;
+                isClose=Boolean.parseBoolean(separated[3]);
+                Log.i("MyLog","status "+isClose);
+
             }
             else{
                 value= Double.parseDouble(separated[2].replace(",","."));
+                isClose=Boolean.parseBoolean(separated[6]);
+                Log.i("MyLog","status "+isClose);
+
 
 
             }
 
         }
     }
-    public void getTimeDir(){
+    /*public void getTimeDir(){
         final String[] separate = mShopId.split(";");
 
         GoogleDirection.withServerKey("AIzaSyDqEgRCf3qXDdfBuahMGQgwToUpXBX2Ozw")
@@ -741,7 +771,7 @@ public class ChatFragment extends SuperFragment {
                     }
                 });
     }
-
+*/
 
     Uri imageUri;
     private Bitmap mImageBitmap;
@@ -762,7 +792,7 @@ public class ChatFragment extends SuperFragment {
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
     }
-    @OnClick({R.id.ivSend,R.id.call,R.id.gtmap,R.id.ivAdd,R.id.invite,R.id.llMsgStatus,R.id.chat_more})
+    @OnClick({R.id.ivSend,R.id.call,R.id.ivAdd,R.id.llMsgStatus,R.id.more_chat,R.id.sale,R.id.toolbar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ivSend:
@@ -791,26 +821,73 @@ public class ChatFragment extends SuperFragment {
 
 
                 break;
-            case R.id.chat_more:
-                int toSet;
-                int up=R.drawable.ic_keyboard_arrow_up_white_24dp;
-                int down=R.drawable.ic_keyboard_arrow_down_white_24dp;
-                if(shtorka.getVisibility() == View.VISIBLE) {
-                    toSet = down;
-                    shtorka.setVisibility(View.GONE);
-                }
-                else {
-                    toSet=up;
-                    shtorka.setVisibility(View.VISIBLE);
+            case R.id.more_chat:
+                final String[] separat = mShopId.split(";");
 
-                }
-                final int sdk = android.os.Build.VERSION.SDK_INT;
-                if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                    chat_more.setBackgroundDrawable( getResources().getDrawable(toSet) );
-                } else {
-                    chat_more.setBackground( getResources().getDrawable(toSet));
-                }
+                PopupMenu popupMenu = new PopupMenu(getActivity(), view);
+                if(isClose)
+                    popupMenu.inflate(R.menu.popupmenuclose);
+                else
+                    popupMenu.inflate(R.menu.popupmenu); // Для Android 4.0
+                // для версии Android 3.0 нужно использовать длинный вариант
+                // popupMenu.getMenuInflater().inflate(R.menu.popupmenu,
+                // popupMenu.getMenu());
 
+                popupMenu
+                        .setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                // Toast.makeText(PopupMenuDemoActivity.this,
+                                // item.toString(), Toast.LENGTH_LONG).show();
+                                // return true;
+                                switch (item.getItemId()) {
+
+                                    case R.id.menu1:
+
+                                        return true;
+                                    case R.id.menu3:
+                                        RecallDialogFragment searchProcessDialogFragment = new  RecallDialogFragment();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putInt("type",0);
+                                        bundle.putInt("id",Integer.valueOf(separat[0]));
+                                        bundle.putInt("rId",Integer.valueOf(mRequestId));
+                                        searchProcessDialogFragment.setArguments(bundle);
+                                        searchProcessDialogFragment.show(getFragmentManager(), "TAG");
+                                        return true;
+                                    case R.id.menu2:
+                                        final String[] separate = mShopId.split(";");
+
+                                        Intent inten=new Intent(getActivity(),MapChat.class);
+                                        inten.putExtra("value",value);
+                                        inten.putExtra("lat",separate[3]);
+                                        inten.putExtra("lng",separate[4]);
+
+                                        startActivity(inten);
+                                        return true;
+                                    case R.id.menu4:
+                                        RecallDialogFragment searchProcessDialogFragmen = new  RecallDialogFragment();
+                                        Bundle b = new Bundle();
+                                        b.putInt("type",1);
+                                        b.putInt("id",Integer.valueOf(separat[0]));
+                                        b.putInt("rId",Integer.valueOf(mRequestId));
+                                        searchProcessDialogFragmen.setArguments(b);
+                                        searchProcessDialogFragmen.show(getFragmentManager(), "TAG");
+                                        return true;
+                                    default:
+                                        return false;
+                                }
+                            }
+                        });
+
+                popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+
+                    @Override
+                    public void onDismiss(PopupMenu menu) {
+
+                    }
+                });
+                popupMenu.show();
                 break;
 
             case R.id.ivAdd:
@@ -829,6 +906,9 @@ public class ChatFragment extends SuperFragment {
             case R.id.llMsgStatus:
                 getActivity().onBackPressed();
                 break;
+            case R.id.sale:
+                sale.setVisibility(View.INVISIBLE);
+                break;
 
 
             case R.id.call:
@@ -839,12 +919,16 @@ public class ChatFragment extends SuperFragment {
                 intend.putExtra("req",mRequestId);
                 startActivity(intend);
                 break;
-            case R.id.invite:
-/*
+          /*  case R.id.invite:
+                Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(contactPickerIntent, 234);
+
+*//*
               EventBus.getDefault().post(new InviteMessage());
-*/
-                break;
-            case R.id.gtmap:
+*//*
+                break;*/
+           /* case R.id.gtmap:
                 final String[] separate = mShopId.split(";");
 
                 Intent inten=new Intent(getActivity(),MapChat.class);
@@ -853,10 +937,36 @@ public class ChatFragment extends SuperFragment {
                 inten.putExtra("lng",separate[4]);
 
                 startActivity(inten);
-                break;
+                break;*/
         }
     }
     private static final int INTENT_REQUEST_GET_IMAGES = 13;
+
+    private void contactPicked(Intent data) {
+        Cursor cursor = null;
+        try {
+            String phoneNo = null ;
+            String name = null;
+            // getData() method will have the Content Uri of the selected contact
+            Uri uri = data.getData();
+            //Query the content uri
+            cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+            cursor.moveToFirst();
+            // column index of the phone number
+            int  phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            // column index of the contact name
+            int  nameIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            phoneNo = cursor.getString(phoneIndex);
+            name = cursor.getString(nameIndex);
+            // Set the value to the textviews
+            Log.i("MyLog",phoneNo);
+/*
+            EventBus.getDefault().post(new InviteMessage());
+*/
+        } catch (Exception e) {
+            Log.i("MyLog", String.valueOf(e));
+        }
+    }
 
     private void getImages() {
         Config config = new Config();
@@ -1006,7 +1116,8 @@ notif();
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void msgPnd(MsgPnd msgPnd) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("С клиентом уже общаются 5 компаний. Ваше сообщение будет сразу отправлено клиенту как только он нажмет Показать еще ответы компании. В следующий раз старайтесь ответить быстрее чтобы попасть в первые 5 ответивших компаний. \"Скорость города берёт...\"")
+        builder.setMessage("Сожалеем, но вы немного опоздали. Пятеро Ваших конкурентов отреагировали раньше и уже общаются с этим клиентом.\n" +
+                "Если клиент пожелает увеличить количество предложений от компаний, ваше сообщение сразу уйдет клиенту. Скорость города берёт...")
                 .setCancelable(false)
                 .setNegativeButton("Ок",
                         new DialogInterface.OnClickListener() {
@@ -1214,6 +1325,12 @@ notif();
     public void updateToolbarCounter(CounterMessage message) {
         notif();
     }
+ @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateClosed(CloseMessage message) {
+     sale.setVisibility(View.VISIBLE);
+     isClose=true;
+onResume();
+ }
 
     public void logout(){
         Call<LogoutResponse> call = AppMain.getClient().logout(SharedStore.getInstance().getSID(),SharedStore.getInstance().getToken());

@@ -1,8 +1,6 @@
 package com.unated.askincht_beta.Pojo;
 
-/**
- * Created by dmitryabramichev on 30.09.16.
- */
+
 public class ProfileResponse {
     private int status;
     private Data data;
@@ -23,7 +21,9 @@ public class ProfileResponse {
     public class Data {
         private int userid;
         private String username;
-        private String useremail;
+        private String avatar;
+        private String phone;
+        private String balance;
 
         public int getUserid() {
             return userid;
@@ -33,8 +33,16 @@ public class ProfileResponse {
             return username;
         }
 
-        public String getUseremail() {
-            return useremail;
+        public String getUserAvatar() {
+            return avatar;
+        }
+
+        public String getBalance() {
+            return balance;
+        }
+
+        public String getPhone() {
+            return phone;
         }
     }
 }
